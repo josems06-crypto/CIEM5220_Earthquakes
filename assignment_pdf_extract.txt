@@ -1,0 +1,202 @@
+Project SRE: Part 1 - Seismic Input and Random Vibrations
+
+Students' Names:                             ABCDEFG
+
+Student ID number (choose any of your group
+members):
+
+INTRODUCTION
+
+In Unit 1 of the B2 Module and during the random vibrations lectures, you have
+seen how we can obtain the Power Spectral Density (PSD) of a random excitation,
+and the PSD of the response of a structure due to the random excitation. You have
+also seen how this can be used to assess limit states of a structure. During the
+SRE lectures, we analyzed seismic motions and we have seen how the ground
+motions are influenced by the presence of soft soil layers. We also discussed the
+resonances of a multi-layered soil on top of a bedrock and the one-dimensional
+(1D and 2D) SH-wave propagation in a horizontally stratified soil column.
+
+In this assignment, you have the possibility to work on these concepts and to
+explain the various physical phenomena associated with these effects.
+
+LEARNING OUTCOMES
+
+The learning outcomes of this assignment are that you will be able to:
+    1. Derive dynamic amplification factors for a layered soil medium based on 1D
+         SH-wave propagation;
+    2. Apply the theory of random vibrations in dynamic analysis;
+    3. Consider additional loads together with the seismic action.
+
+INSTRUCTIONS & QUESTIONS TO BE ANSWERED
+
+ Consider the dynamics of the offshore wind turbine (OWT) shown in Figure 1 which
+ vibrates in the plane of the figure. The OWT structure is founded upon a multi-
+ layered soil medium, is subjected to a constant wind force at the top and is excited
+ dynamically by seismic motion at the base of that medium and sea waves along
+ its height. You may assume that the diameters of the circular cross sections are
+ constant over their height. You are asked to analyse the multi-layered soil medium
+ and assess the OWT response using random vibrations theory.
+
+ The list of properties of the dynamical model under consideration are as follows
+ (note that some of the variables given are based on your (student) ID number):
+
+      -  = 80  103 kg
+      -  = 300  106 kg m2
+      -  = 7850 kg/m3
+      -  = 210 GPa
+      -  = 0.001 [-]
+      - ,1 = 9.1 m
+      - ,1 = 8.96 m
+      - ,2 = 7.1 m
+
+CIEM5220 ­ Structural Response to Earthquakes ­ Project Work ­ Part 1
+      - ,2 = 7.0 m
+      -  = 2  105 N
+      -  = 140 +  m
+      -  = 30 +  m
+      - 1 = 2 +  m
+      - 2 = 58 +  m
+      - 3 = 38 +  m
+      - 1 = 10 MPa
+      - 1 = 1650 kg/m3
+      - 1 = 100 Ns/m2
+      - 2 = 10 MPa
+      - 2 = 1850 kg/m3
+      - 2 = 100 Ns/m2
+      - 3 = 10 MPa
+      - 3 = 1900 kg/m3
+      - 3 = 100 Ns/m2
+
+                                                 Figure 1: Simplified model of OWT at sea
+CIEM5220 ­ Structural Response to Earthquakes ­ Project Work ­ Part 1
+ Please answer the following questions:
+
+ 1. Formulate the set of governing equations, i.e. equations of motion, boundary
+      and interface conditions, for the layered soil system for a given input motion
+      at the bedrock level assuming one-dimensional SH-wave propagation. You can
+      ignore the presence of the OWT structure in your formulation.
+
+ 2. Derive the natural frequencies and modes of vibration of the multi-layered soil
+      medium of Figure 1. Plot the first 10 natural modes of vibration of the layered
+      soil system. In your analysis, you may neglect material damping. In case you
+      would like to include soil damping what effect will that have on the natural
+      frequencies and the modes of vibration?
+
+ 3. Derive the Frequency Response Functions (, ) of the layered soil system.
+      Plot the amplitude and the phase of the (, ) at the top of layer 3 and the
+      top of layer 1 and explain the differences you observe in the two cases. What
+      is the physical meaning of the phase in the derived (, )?
+
+ 4. Using as input the Power Spectral Densities (PSDs) of the wave forces and the
+      seismic excitation at the bedrock level1 given below, and by further assuming
+      that the PSDs of these two dynamic loads are uncorrelated, please answer the
+      following questions:
+
+      4.1. Compute the variance and mean value of the displacement at the top of
+                the OWT and of the bending moment at the base of the OWT.
+
+      4.2. Derive the probability of exceedance of 80% of the yield limit stress
+                (S335:  = 355 N/mm²) of the OWT at the base and the probability of
+                exceedance of the acceleration value of 0.2[g] at the top of the OWT.
+                You may assume that the Probability Density Function (PDF) of the
+                structural response is the normal distribution.
+
+      4.3. Please explain whether you think that the assumption of stationarity and
+                ergodicity in the case of the seismic motions is appropriate. To answer
+                this question, you are free to analyse the set of recorded ground motions
+                from seismic events in Groningen discussed in class.
+
+      4.4. If one would additionally need to consider the seismic excitation in the
+                vertical direction acting at the base of the OWT, could one assume that
+                the horizontal and vertical PSDs of the seismic motion are uncorrelated?
+                Please substantiate your answer.
+
+ In your solution, please:
+           · Assume that the OWT is rigidly connected to the top of the soil, as
+                depicted in Figure 1.
+           · Neglect dynamic soil-structure interaction (SSI), i.e. assume that the
+                motion at the surface of the ground derived by means of the analysis
+                in question 3 is your kinematic excitation at the base of the OWT.
+           · Consider the wave forces acting on the OWT by using the Morrison's
+                equation. You may neglect the drag force.
+
+1 The PSD of the ground motion was calculated based on the assumption of wide-sense stationarity
+(WSS) and ergodicity.
+
+CIEM5220 ­ Structural Response to Earthquakes ­ Project Work ­ Part 1
+Input PSDs of the wave force and of the seismic motion:
+    · For the wave force please use the JONSWAP spectrum, as explained in unit
+         2 (see also formula sheet for the equations). For the parameters, use the
+         ones provided to you in the assignment of unit 2 for load case 2.
+
+    · For the seismic motion at bedrock level, please use the PSD as given in
+         notebook: `PSD.ipynb'. Please use the principal horizontal component as
+         seismic input.
+
+RESOURCES
+
+For this assignment you are free to use the Maple software which can be
+downloaded from the TU Delft software page. The Python package PyDynSM can
+also be used especially for derivation of the FRFs of the OWT or for the SH-wave
+propagation in the layered system. If you do so, make sure to install the latest
+version.
+
+Tips for use of PyDynSM:
+    · the soil can be modelled as `Shear Beam'.
+    · The beam can be modelled as `EulerBernoulli Beam foundation attachments'
+
+PRODUCTS
+
+The final product of this assignment is a report which you submit before the
+deadline mentioned below. The report will count for 40% of the final grade of this
+part of the module.
+
+ASSESSMENT CRITERIA
+
+The length of the report is irrelevant for your final mark; the grade is based solely
+on the content of the report. The weight of each part is specified below:
+
+Question Points      Percentile       Final score
+                     contribution to  per question
+Nr.       (0-5)      final score (%)
+                     15
+1                    15
+2                    15
+3                    15
+4                    40
+5
+Sum
+Grade
+(1-10)
+
+CIEM5220 ­ Structural Response to Earthquakes ­ Project Work ­ Part 1
+ SUPERVISION AND HELP
+ Feedback to the assignment will be given in two specific moments:
+
+      · Feedback on work in progress: Every week, a student assistant will be
+           available to provide feedback on the progress and help you with the
+           assignment. Please check lecture slides for the days of the consultancy
+           sessions.
+
+      · Feedback on the final report: You will receive feedback when this report
+           will be graded on Brightspace. You will have the opportunity to discuss your
+           mark and your questions after the announcement of the grade.
+
+ SUBMISSION FORMAT
+ Submission deadline: June 21, 2026 at 23:59 o'clock.
+ Your report should be submitted electronically as a single pdf-file and the file name
+ should be of the following form:
+ "CIEM5220_SRE_PW1_2026_[Your Names+Your student ID numbers]".
+ For example:
+ CIEM5220_SRE_PW1_2026_ATsouvalas1234567_PDitmar7654321.pdf
+ Please submit this assignment specification form together with your final report
+ as a single pdf-file (please compile all documents into a single pdf-file)
+ directly on Brightspace under the correspondent folder allocated for assignments.
+ Do not forget to fill in your names and Student ID numbers at the front page of
+ this assignment specification form. Clearly indicate the ID number used for this
+ assignment.
+ The solution must be either handwritten or typed (word, LateX, etc.) and then
+ converted to pdf-format and submitted as defined above.
+
+CIEM5220 ­ Structural Response to Earthquakes ­ Project Work ­ Part 1
+
