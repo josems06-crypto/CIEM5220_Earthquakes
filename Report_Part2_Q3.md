@@ -21,11 +21,12 @@ The pushover demand was defined in RFEM using the horizontal elastic response sp
 - Structural damping ratio: $\xi = 5\%$
 - Damping correction factor: $\eta = 1.0$
 - Behaviour factor for elastic spectrum: $q = 1.0$
+- Importance factor: $\gamma_I = 1.4$
 
 The assignment defines the design ground acceleration as
 
 $$
-a_g = 1.4\,(0.35 + 0.0C)\,g
+a_{gR} = \,(0.35 + 0.0C)\,g
 $$
 
 Using the student-ID digits adopted in the current project files,
@@ -37,14 +38,9 @@ $$
 and therefore $C = 1$, so
 
 $$
-a_g = 1.4\,(0.35 + 0.01)\,g = 0.504\,g
+PGA = \gamma_I\,(0.35 + 0.01)\,g = 0.504\,g
 $$
 
-Using these values, the elastic response spectrum shown in Figure 2 was adopted for the pushover procedure.
-
-![Elastic response spectrum used in the pushover analysis](images/pushover_response_spectrum.png)
-
-*Figure 2. Elastic acceleration response spectrum used as input for the pushover procedure.*
 
 ## Modal Basis and Choice of Analysis Direction
 
@@ -164,3 +160,61 @@ S_d \approx d_u^\ast = 178.6\ \mathrm{mm}.
 $$
 
 This provides the requested limiting acceleration for the chosen modal pushover pattern in the global $y$ direction.
+
+
+
+## Comparison of lateral-load patterns and applicability of pushover analysis
+
+In accordance with EN 1998-1, Section 4.3.3.4.2.2, both uniform and modal lateral-load distributions were considered in each principal horizontal direction. The uniform pattern was defined using lateral forces proportional to the masses, independently of elevation. The modal pattern was based on the dominant translational mode in the direction under consideration.
+
+In the $Y$-direction, Mode 1 is the dominant translational mode. It has a natural period of
+
+$$
+T_1 = 0.374\ \text{s}
+$$
+
+and an effective modal-mass ratio of
+
+$$
+f_{\mathrm{meY},1} = 64.5\%.
+$$
+
+The modal pushover pattern in the $Y$-direction was therefore based on Mode 1.
+
+Nevertheless, the response in the $Y$-direction is not completely dominated by this mode. Mode 4 contributes an additional $22.2\%$ of the effective translational mass in the $Y$-direction. Modes 1 and 4 together account for
+
+$$
+64.5\% + 22.2\% = 86.7\%
+$$
+
+of the total effective mass in the $Y$-direction. Including Mode 9 increases the cumulative effective modal-mass ratio to approximately
+
+$$
+64.5\% + 22.2\% + 4.7\% = 91.4\%.
+$$
+
+Furthermore, Mode 4 has a rotational effective modal-mass ratio about the vertical $Z$-axis of approximately
+
+$$
+f_{\mathrm{m}\varphi Z,4} = 47.8\%,
+$$
+
+indicating coupled translational and torsional behaviour.
+
+Based on these modal characteristics, an additional lateral-load pattern may be relevant in the $Y$-direction. Although Mode 1 is the dominant mode, it accounts for only $64.5\%$ of the effective translational mass, while Mode 4 makes a substantial additional contribution and exhibits significant torsional participation. Therefore, a higher-mode pattern based on Mode 4, a multimodal pattern combining Modes 1 and 4, or an adaptive pushover distribution could provide additional information regarding the sensitivity of the structural response to the assumed lateral-load distribution.
+
+Conventional pushover analysis is most applicable when the structural response is dominated by a principal translational mode, with limited contribution from translation in the orthogonal horizontal direction and from torsional deformation. For Mode 1, the effective modal-mass ratio in the orthogonal $X$-direction is only
+
+$$
+f_{\mathrm{meX},1} = 0.4\%,
+$$
+
+while the rotational effective modal-mass ratio about the vertical $Z$-axis is approximately
+
+$$
+f_{\mathrm{m}\varphi Z,1} = 17.7\%.
+$$
+
+The very small contribution in the orthogonal $X$-direction indicates that Mode 1 is predominantly translational in the $Y$-direction. Although some torsional coupling is present, the response remains primarily governed by $Y$-translation. Consequently, pushover analysis is considered an appropriate method for estimating the global seismic capacity of the structure in the $Y$-direction. However, the contribution of Mode 4 and its significant torsional component should be considered when interpreting the results.
+
+
