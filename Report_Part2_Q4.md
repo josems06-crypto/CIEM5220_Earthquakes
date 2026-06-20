@@ -145,11 +145,11 @@ Max Bending Moment ($M_{z,Ed}$): $17.20 \text{ kNm}$
 
 The plastic design capacities ($R_d$) of the HEB 240 section are calculated as follows:
 
-Axial Capacity ($N_{pl,Rd}$):$$N_{pl,Rd} = \frac{A \cdot f_y}{\gamma_{M0}} = \frac{10,600 \text{ mm}^2 \cdot 355 \text{ N/mm}^2}{1.0} = 3,763 \text{ kN}$$
+Axial Capacity ($N_{pl,Rd}$): $$N_{pl,Rd} = \frac{A \cdot f_y}{\gamma_{M0}} = \frac{10,600 \text{ mm}^2 \cdot 355 \text{ N/mm}^2}{1.0} = 3,763 \text{ kN}$$
 
-Strong-Axis Bending Capacity ($M_{pl,y,Rd}$):$$M_{pl,y,Rd} = \frac{W_{pl,y} \cdot f_y}{\gamma_{M0}} = \frac{1,053 \times 10^3 \text{ mm}^3 \cdot 355 \text{ N/mm}^2}{1.0 \times 10^6} = 373.8 \text{ kNm}$$
+Strong-Axis Bending Capacity ($M_{pl,y,Rd}$): $$M_{pl,y,Rd} = \frac{W_{pl,y} \cdot f_y}{\gamma_{M0}} = \frac{1,053 \times 10^3 \text{ mm}^3 \cdot 355 \text{ N/mm}^2}{1.0 \times 10^6} = 373.8 \text{ kNm}$$
 
-Weak-Axis Bending Capacity ($M_{pl,z,Rd}$):$$M_{pl,z,Rd} = \frac{W_{pl,z} \cdot f_y}{\gamma_{M0}} = \frac{498.4 \times 10^3 \text{ mm}^3 \cdot 355 \text{ N/mm}^2}{1.0 \times 10^6} = 176.9 \text{ kNm}$$
+Weak-Axis Bending Capacity ($M_{pl,z,Rd}$): $$M_{pl,z,Rd} = \frac{W_{pl,z} \cdot f_y}{\gamma_{M0}} = \frac{498.4 \times 10^3 \text{ mm}^3 \cdot 355 \text{ N/mm}^2}{1.0 \times 10^6} = 176.9 \text{ kNm}$$
 
 Applying a conservative linear interaction formula for combined axial and bi-axial bending stress:
 $$\text{Unity Check} = \frac{N_{Ed}}{N_{pl,Rd}} + \frac{M_{y,Ed}}{M_{pl,y,Rd}} + \frac{M_{z,Ed}}{M_{pl,z,Rd}}$$
