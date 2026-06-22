@@ -1,6 +1,6 @@
-5) Perform the response spectrum method of analysis (RSA) using the design spectra provided in Eurocode (EN1998-1) and report the following results:
+**5) Perform the response spectrum method of analysis (RSA) using the design spectra provided in Eurocode (EN1998-1) and report the following results:**
 
-a) Plot the first five eigenmodes of the system together with their correspondent eigenfrequencies. Derive the modal participation mass for each of the five modes (in each direction). What do you observe as to the (potential) contribution of the different modes to the final response of the system?
+**a) Plot the first five eigenmodes of the system together with their correspondent eigenfrequencies. Derive the modal participation mass for each of the five modes (in each direction). What do you observe as to the (potential) contribution of the different modes to the final response of the system?**
 
 A modal analysis was performed based on the existing finite element model of the structure. As requested, the amount of modes captured was limited to five, each including the corresponding natural frequency and modal participation mass per mode and per direction. From it, the following eigenmodes were obtained for the first five modes:
 
@@ -205,7 +205,7 @@ Based on the modal analysis, the modal participation mass for each of the five m
 
 As it can be observed from the previous results, the total modal participation mass of the five modes is below the prescribed minimum of 90% of the total mass, this holds for all directions. This means that if performed with this amount of modes, the analysis could not be concluded to be accurate enough to represent the real behavior of the structure due to seismic loading. Further on, the modal participation mass of some modes in certain directions can be observed to be almost negligible. To ensure the analysis is performed within the requirements as well as in an efficient manner, it will be ensured that a right amount of modes are chosen so that the total modal participation mass reaches 90% of the total mass, and modes which can be neglected will not be taken into account for the calculation. 
 
-b) Determine the maximum displacements and stresses at the critical sections. Please substantiate your choice as to the modal combination rules used for: i) the structural modes; and ii) the different directions of the seismic input motion. Are the critical cross-sections the same as the ones found in Question 4 above?
+**b) Determine the maximum displacements and stresses at the critical sections. Please substantiate your choice as to the modal combination rules used for: i) the structural modes; and ii) the different directions of the seismic input motion. Are the critical cross-sections the same as the ones found in Question 4 above?**
 
 The maximum displacements located at their corresponding critical cross-sections which follow from the Response Spectra Analysis are the following: 
 
@@ -287,7 +287,10 @@ The structural checks under seismic loading condition RC1 show that all examined
 
 The modal combination rule used for the structural modes is chosen to be a Complete Quadratic Combination (CQC) by using equivalent linear combination. This choice was made based on the fact that some of the eigenmodes show to be very close to each other (see for example mode 2 and mode 3). When the eigenfrequencies of those certain modes differ by less than 10%, their modal responses are statistically dependent and can couple; the simple SRSS rule would unsafely ignore this interaction, whereas CQC correctly accounts for it via cross-modal correlation coefficients. For the different directions of the seismic input, it was chosen to make use of the Scaled Sum, with a factor of 100% / 30%, as it is the most realistic combination as well as a conservative approach, wihtout being as overly conservative as the absolute sum is, recommended by EN 1998-1. 
 
-c) How did you choose the upper limit of modes to be considered in the final response of the system? Are the results sensitive to this choice and why? Please substantiate your answer.
+The critical cross-sections are 
+
+
+**c) How did you choose the upper limit of modes to be considered in the final response of the system? Are the results sensitive to this choice and why? Please substantiate your answer.**
 
 As stated above, the amount of modes chosen previously (5 modes) was not sufficient for the total participation mass to be 90% of the modal mass. Therefore, more modes need to be taken into account. Additionally, the scope for directions of the seismic input motion is limited, and only the translational motion in the x- and y-direction will be taken into account. This choice is made based on the fact that the derived Empirical Response Spectra in Questions 1 and 2 show that the magnitude of the soil accelerations in the horizontal principal directions is much greater than for the vertical one. Next to it, the rotational directions are also not accounted for for simplicity. 
 
@@ -296,7 +299,7 @@ To ensure the total modal mass participation reached the prescribed minimum, the
 Based on this, we can conclude that the current results are very sensitive to the chosen modes, as if we had continued with the initial 5 modes, we would have reached a total modal mass participation of 71.24% and 82.91% respectively. This would have resulted in smaller displacements and stresses as a result of the seismic loading, possibly leading to underdesigning the structure. Even though these differences would have been clear and the structure wouldn't fulfill the requirements, the difference is not drastic and it could still give a realistic estimate of how the structure could behave. 
 
 
-d) Conclude as to the seismic capacity of the structure
+**d) Conclude as to the seismic capacity of the structure.**
 
 Seismic capacity is governed by lateral stiffness to prevent structural instability (P-Delta effects) and severe damage. The total height of the structure is H = 5.035 [m]. The maximum absolute deformation occurred at the roof level: Maximum Global Displacement ($\Delta_{max}$): 34.8 [mm]
 
