@@ -147,7 +147,7 @@ The dynamic time history analysis proves that the structure has sufficient seism
 A comparative review of the global structural demands reveals a substantial discrepancy between the results of the Response Spectrum Analysis (Q5) and the linear Time History Analysis (Q4). The global displacements and internal stresses derived from the RSA significantly exceed those obtained from the THA—with the maximum RSA displacement in the Y-direction (34.2 mm) nearly tripling the corresponding THA displacement (11.5 mm). The remainder of this report is dedicated to justifying the reasoning behind the disrepancy between the results of RSA and THA.
 
 -------------------------------------
-Disrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
+Discrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
 -----------------------------------------
 
 
