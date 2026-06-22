@@ -209,67 +209,79 @@ b) Determine the maximum displacements and stresses at the critical sections. Pl
 
 The maximum displacements located at their corresponding critical cross-sections which follow from the Response Spectra Analysis are the following: 
 
-| Description | Value | Unit | Notes |
-| :--- | :--- | :--- | :--- |
-| Maximum displacement in X-direction | 6.5 | mm | Member No. 28, x: 2.470 m |
-| Maximum displacement in Y-direction | 34.2 | mm | Member No. 27, x: 2.470 m |
-| Maximum displacement in Z-direction | 3.7 | mm | Member No. 218, x: 3.886 m |
-| Maximum vectorial displacement | 34.8 | mm | Member No. 28, x: 2.470 m |
-| Maximum rotation about X-axis | 22.5 | mrad | Member No. 476, x: 0.000 m |
-| Maximum rotation about Y-axis | 2.0 | mrad | Member No. 5, x: 0.000 m |
-| Maximum rotation about Z-axis | 6.4 | mrad | Member No. 462, x: 1.125 m |
+### Serviceability Limit State (SLS) – Deflection and Rotation Summary
+
+The global displacement and rotation analysis highlights that the most significant structural movement occurs as lateral drift/deflection along the Y-axis. Below is the detailed breakdown written in standard phrasing:
+
+#### Global Displacements
+
+* **Maximum Displacement in the X-Direction (Longitudinal):** The peak longitudinal movement reaches **6.5 mm**. This occurs on **Member No. 28** at a distance of **2.470 m**.
+
+![Maximum X-displacement](MaxDisplacement1.png)
+
+* **Maximum Displacement in the Y-Direction (Lateral):** The largest movement in the entire structure occurs along the Y-axis, reaching **34.2 mm**. This peak deflection is located on **Member No. 27** at a distance of **2.470 m**.
+
+![Maximum Y-displacement](MaxDisplacement2.png)
+
+* **Maximum Displacement in the Z-Direction (Vertical):** Vertical deflection remains very low, peaking at **3.7 mm**. This is located on **Member No. 218** at a distance of **3.886 m**.
+
+![Maximum Z-displacement](MaxDisplacement3.png)
+
+* **Maximum Vectorial (Total) Displacement:** When combining the X, Y, and Z translational vectors, the absolute maximum total displacement is **34.8 mm**. This governing value occurs on **Member No. 28** at a distance of **2.470 m** (driven heavily by the large Y-direction movement at this structural node).
+
+![Maximum vectorial displacement](MaxDisplacement4.png)
+
+---
+
+#### Global Rotations
+
+* **Maximum Rotation about the X-Axis:** The highest rotational deformation occurs about the X-axis, measuring **22.5 mrad**. This peak twist is located at the start of **Member No. 476** (at **0.000 m**).
+
+![Maximum X-rotation](MaxRotation1.png)
+
+* **Maximum Rotation about the Y-Axis:** Torsional rotation about the vertical Y-axis reaches a maximum of **2.0 mrad**, located on **Member No. 5** at a distance of **0.000 m**.
+
+![Maximum Y-rotation](MaxRotation2.png)
+
+* **Maximum Rotation about the Z-Axis:** Torsional rotation about the vertical Z-axis reaches a maximum of **6.4 mrad**, located on **Member No. 462** at a distance of **1.125 m**.
+
+![Maximum Z-rotation](MaxRotation3.png)
 
 The maximum stresses located at their corresponding critical cross-sections which follow from the Response Spectra Analysis are the following: 
 
-<table>
-	<thead>
-		<tr>
-			<th colspan="8">ULS (STR/GEO) - Seismic</th>
-		</tr>
-		<tr>
-			<th>Member No.</th>
-			<th>Location x [m]</th>
-			<th>Stress Point No.</th>
-			<th>Loading No.</th>
-			<th>Stress Type</th>
-			<th>Stress [N/mm2] Existing</th>
-			<th>Stress [N/mm2] Limit</th>
-			<th>Stress Ratio η [--]</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>129</td>
-			<td>3,514</td>
-			<td>1</td>
-			<td>RC1</td>
-			<td>σx,tot</td>
-			<td>155,792</td>
-			<td>350,000</td>
-			<td>0,445</td>
-		</tr>
-		<tr>
-			<td>470</td>
-			<td>1,000</td>
-			<td>11</td>
-			<td>RC1</td>
-			<td>τtot</td>
-			<td>-20,264</td>
-			<td>202,073</td>
-			<td>0,100</td>
-		</tr>
-		<tr>
-			<td>129</td>
-			<td>3,514</td>
-			<td>1</td>
-			<td>RC1</td>
-			<td>σeqv,von Mises</td>
-			<td>155,792</td>
-			<td>350,000</td>
-			<td>0,445</td>
-		</tr>
-	</tbody>
-</table>
+### Ultimate Limit State (ULS) STR/GEO - Seismic Analysis Summary
+
+The structural checks under seismic loading condition RC1 show that all examined members remain well within their material capacity limits. Below is the detailed breakdown for each critical check:
+
+#### 1. Member 129 (Total Axial/Normal Stress)
+* **Location:** 3.514 meters
+* **Stress Point:** 1
+* **Stress Type:** Total Normal Stress ($\sigma_{x,tot}$)
+* **Existing Stress:** 155.792 N/mm²
+* **Limit Stress:** 350.000 N/mm²
+* **Status:** Safe. The stress ratio ($\eta$) is **0.445**, utilizing 44.5% of the total capacity.
+
+![Maximum axial stress](MaxStress1.png)
+
+#### 2. Member 470 (Total Shear Stress)
+* **Location:** 1.000 meter
+* **Stress Point:** 11
+* **Stress Type:** Total Shear Stress ($\tau_{tot}$)
+* **Existing Stress:** -20.264 N/mm²
+* **Limit Stress:** 202.073 N/mm²
+* **Status:** Safe. The stress ratio ($\eta$) is **0.100**, utilizing 10.0% of the shear capacity.
+
+![Maximum shear stress](MaxStress2.png)
+
+#### 3. Member 129 (Equivalent von Mises Stress)
+* **Location:** 3.514 meters
+* **Stress Point:** 1
+* **Stress Type:** Equivalent von Mises Stress ($\sigma_{eqv, von Mises}$)
+* **Existing Stress:** 155.792 N/mm²
+* **Limit Stress:** 350.000 N/mm²
+* **Status:** Safe. The stress ratio ($\eta$) is **0.445**, utilizing 44.5% of the allowable limit.
+
+![Maximum equivalent stress](MaxStress1.png)
 
 
 
@@ -288,6 +300,6 @@ d) Conclude as to the seismic capacity of the structure
 
 Seismic capacity is governed by lateral stiffness to prevent structural instability (P-Delta effects) and severe damage. The total height of the structure is H = 5.035 [m]. The maximum absolute deformation occurred at the roof level: Maximum Global Displacement ($\Delta_{max}$): 34.8 [mm]
 
-The global drift ratio Global Drift Ratio is calculated as:$$Global Drift Ratio = \frac{\Delta_{max}}{H} = \frac{34.8 \text{ mm}}{5035 \text{ mm}} = 0.00691 \text{ rad} \approx \mathbf{0.69\%}$$A global drift ratio of 0.69% is well within standard acceptable limits for the ultimate limit state of steel frames under seismic loading (which typically allow drifts between 1.0% and 1.5% to ensure life safety and prevent collapse).
+The global drift ratio Global Drift Ratio is calculated as:$$Global Drift Ratio = \frac{\Delta_{max}}{H} = \frac{34.8 \text{ mm}}{5035 \text{ mm}} = 0.00691 \text{ rad} \approx \mathbf{0.69\%}$$A global drift ratio of 0.69% is beyond the standard acceptable limits for the ultimate limit state of steel frames under seismic loading (0.5% assuming it is a structure without brittle non-structural components). If we were to assume it to have ductile or isolated components the acceptable limit would move around 0.75% to 1%, meaning the strucutre would fulfill. Based on the characteristics of the structure, we are assuming components are ductile but not isolated, therefore the structure is on the limit and may need to be slightly redesigned. 
 
-The dynamic time history analysis proves that the structure has sufficient seismic capacity. The substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 44.5% of the S355 steel's yield threshold, while the overall frame stiffness restricts global deformations to a safe 0.69% drift ratio. Therefore, the building will comfortably survive the assigned bi-directional seismic event with no structural damage.
+The Response Spectra analysis proves that the seismic capacity of the structure is slightly lower than the stated limit. On the one hand, the stresses in the membres in the substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 44.5% of the S355 steel's yield threshold. On the other hand, the overall frame stiffness restricts global deformations to a 0.69% drift ratio, which is on the limit is we assume ductile behaviour of the components. Therefore, the building needs to be redesigned, including some isolated components for it to fulfill against seismic loading.  
