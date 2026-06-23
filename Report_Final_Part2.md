@@ -13,7 +13,10 @@ This document combines the separate Part 2 report sections in the order of the a
 
 <div style="page-break-after: always;"></div>
 
-# Question 1 
+# Q1
+
+## Elastic Response Spectra
+
 
 ### 1) As part of the team of specialists, you are asked to use five sets of tri-axial ground motions provided and derive the motions in the three principal directions. For each tri-axial set of recordings decompose the two horizontal (as recorded) components in the principal directions and consider the vertical component acting along the third principal direction. Scale the derived horizontal ones such that the peak ground acceleration (PGA) has a value of $PGA_{hor} = a_{g,R} \cdot \gamma_I$. Scale the vertical component according to the instructions in the Python file distributed. You are asked to:
 
@@ -76,8 +79,10 @@ This is because EN1998-1 explicitly drops the soil factor for vertical design sp
 Not to mention that vertical ground motions (mainly P-waves) naturally carry much higher frequency energy than horizontal motions (predominantly S-waves and surface waves). This concentrates the vertical spectral energy into very narrow, sharp spikes at low periods, exactly as observed in the derived plot.
 
 
+<div style="page-break-after: always;"></div>
 
-### 2) The design team is interested in the inelastic response spectra:
+# Q2
+## Inelastic Response Spectra 
 ### a) Derive the $R_y - \mu - T$ relationship, based on the Newmark and Hall (1982) formulation for ductility equal to $\mu = \max\{1.7D; 1.7F\}$ . Plot the inelastic acceleration response spectra for the $R_y - \mu - T$ relationship above, using the mean ERS as computed along the two principal horizontal directions in question (1b).
 
 Structural systems are designed to yield and dissipate energy through plastic deformation, quantified by the ductility factor ($\mu$). The Indirect method simplifies the calculation of inelastic demands by applying a yield strength reduction factor ($R_y$), which depends on the natural period, directly to the previously calculated Elastic Response Spectrum (ERS). 
@@ -124,7 +129,6 @@ The Displacement-Sensitive Region ($T_n > 1.0$ s)
  For very flexible structures, the total maximum displacement of a yielding system is practically identical to that of an elastic system. Therefore, reducing the elastic force by a factor of $\mu$ is highly accurate. Because this statistical assumption holds very well in reality, the empirical Indirect curve and the exact Direct curve converge in for high periods.
 
 <div style="page-break-after: always;"></div>
-
 
 # Q3
 
@@ -345,6 +349,9 @@ $$
 
 The very small contribution in the orthogonal $X$-direction indicates that Mode 1 is predominantly translational in the $Y$-direction. Although some torsional coupling is present, the response remains primarily governed by $Y$-translation. Consequently, pushover analysis is considered an appropriate method for estimating the global seismic capacity of the structure in the $Y$-direction. However, the contribution of Mode 4 and its significant torsional component should be considered when interpreting the results.
 
+
+<div style="page-break-after: always;"></div>
+
 # Q4
 
 ## Time History Analysis
@@ -496,6 +503,7 @@ The dynamic time history analysis proves that the structure has sufficient seism
 A comparative review of the global structural demands reveals a substantial discrepancy between the results of the Response Spectrum Analysis (Q5) and the linear Time History Analysis (Q4). The global displacements and internal stresses derived from the RSA significantly exceed those obtained from the THA—with the maximum RSA displacement in the Y-direction (34.2 mm) nearly tripling the corresponding THA displacement (11.5 mm). The remainder of this report is dedicated to justifying the reasoning behind the disrepancy between the results of RSA and THA.
 
 
+<div style="page-break-after: always;"></div>
 
 # Q5
 
@@ -799,9 +807,21 @@ The modal combination rule used for the structural modes is chosen to be a Compl
 
 
 
+### Conclusion on the capacity of the structure
+
+Seismic capacity is governed by lateral stiffness to prevent structural instability (P-Delta effects) and severe damage. The total height of the structure is H = 5.035 [m]. The maximum absolute deformation occurred at the roof level: Maximum Global Displacement ($\Delta_{max}$): 34.8 [mm]
+
+The global drift ratio Global Design Drift Ratio is calculated as:$$Global Design Drift Ratio = \nu * \frac{\Delta_{max}}{H} = 0.5 * \frac{34.8 \text{ mm}}{5035 \text{ mm}} = 0.0035 \text{ rad} \approx \mathbf{0.35\%}$$A global drift ratio of 0.35% is well within standard acceptable limits for the ultimate limit state of steel frames under seismic loading (which typically allow drifts under 0.5% to ensure life safety and prevent collapse).
+
+The Response Spectra analysis proves that the structure has sufficient seismic capacity. The substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 44.5% of the S355 steel's yield threshold, while the overall frame stiffness restricts global deformations to a safe 0.35% drift ratio. Therefore, the building will comfortably survive the assigned bi-directional seismic event with no structural damage.  
+
+
+<div style="page-break-after: always;"></div>
+
+
 ## Discrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
 
-
+A comparative review of the global structural demands reveals a substantial discrepancy between the results of the Response Spectrum Analysis (Q5) and the linear Time History Analysis (Q4). The global displacements and internal stresses derived from the RSA significantly exceed those obtained from the THA with the maximum RSA displacement in the Y-direction (34.2 mm) nearly tripling the corresponding THA displacement (11.5 mm). The remainder of this report is dedicated to justifying the reasoning behind the disrepancy between the results of RSA and THA.
 
 
 1. Spectral Shape: The Broadened Envelope vs. The Specific Ground Motion
@@ -820,14 +840,7 @@ Finally, the mathematical combination of modal responses inherently renders the 
 
 The RSA provides a highly conservative, code-compliant upper bound for the structural design by artificially ensuring that over 90% of the modal mass is subjected to peak spectral demands. While the THA utilizing Set 4 accurately captures the true time-domain behavior of the dominant structural modes, its jagged spectral profile fails to excite the higher-order modes, rendering it an unconservative metric if used in isolation for evaluating the global structural capacity.
 
-
-# Conclusion on the capacity of the structure
-
-Seismic capacity is governed by lateral stiffness to prevent structural instability (P-Delta effects) and severe damage. The total height of the structure is H = 5.035 [m]. The maximum absolute deformation occurred at the roof level: Maximum Global Displacement ($\Delta_{max}$): 34.8 [mm]
-
-The global drift ratio Global Design Drift Ratio is calculated as:$$Global Design Drift Ratio = \nu * \frac{\Delta_{max}}{H} = 0.5 * \frac{34.8 \text{ mm}}{5035 \text{ mm}} = 0.0035 \text{ rad} \approx \mathbf{0.35\%}$$A global drift ratio of 0.35% is well within standard acceptable limits for the ultimate limit state of steel frames under seismic loading (which typically allow drifts under 0.5% to ensure life safety and prevent collapse).
-
-The Response Spectra analysis proves that the structure has sufficient seismic capacity. The substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 44.5% of the S355 steel's yield threshold, while the overall frame stiffness restricts global deformations to a safe 0.35% drift ratio. Therefore, the building will comfortably survive the assigned bi-directional seismic event with no structural damage.  
+<div style="page-break-after: always;"></div>
 
 # Q6
 
