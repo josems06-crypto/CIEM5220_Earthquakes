@@ -12,6 +12,9 @@ Given the characteristics of the structural system, which is classified to be of
 
 ![Seciond Horizontal Direction](HorizontalSpectra2.png)
 
+
+
+
 - Vertical direction
 
 ![Vertical Direction](HorizontalVertical.png)
@@ -21,6 +24,8 @@ Taking the average of the sets for each direction, gives the elastic response sp
 ![ERS](MeanSpectra.png)
 
 **EXPLAIN DIFFERENCE WITH THE ONE IN THE EUROCODE.
+
+
 
 # Q2
 
@@ -36,6 +41,8 @@ decomposed along the two principal horizontal directions, gives the following sp
 ![DERS](MeanSpectra.png)
 
 **EXPLAIN DIFFERENCES
+
+
 
 # Q3
 
@@ -617,6 +624,14 @@ Based on the modal analysis, the modal participation mass for each of the five m
 
 As it can be observed from the previous results, the total modal participation mass of the five modes is below the prescribed minimum of 90% of the total mass, this holds for all directions. This means that if performed with this amount of modes, the analysis could not be concluded to be accurate enough to represent the real behavior of the structure due to seismic loading. Further on, the modal participation mass of some modes in certain directions can be observed to be almost negligible. To ensure the analysis is performed within the requirements as well as in an efficient manner, it will be ensured that a right amount of modes are chosen so that the total modal participation mass reaches 90% of the total mass, and modes which can be neglected will not be taken into account for the calculation. 
 
+## Choice of the modal upper bound and sensitivity anaysis
+
+As stated above, the amount of modes chosen previously (5 modes) was not sufficient for the total participation mass to be 90% of the modal mass. Therefore, more modes need to be taken into account. Additionally, the scope for directions of the seismic input motion is limited, and only the translational motion in the x- and y-direction will be taken into account. This choice is made based on the fact that the derived Empirical Response Spectra in Questions 1 and 2 show that the magnitude of the soil accelerations in the horizontal principal directions is much greater than for the vertical one. Next to it, the rotational directions are also not accounted for for simplicity. 
+
+To ensure the total modal mass participation reached the prescribed minimum, the first 102 modes of the structure were selected. This gave a total modal participation mass which was 91.16% of the total mass in the x-direction and 92.43% in the y-direction. This was the minimum amount of modes to fulfill this requirement. Even though a lot of the selected modes have a very small modal participation mass, modes which had a modal participation mass smaller than 0.3% of the total mass in both x- and y-direction were neglected, following the regulations of EN 1998-1. This meant that only 21 out of the 102 modes were relevant for the calculation, making the analysis much more efficient. 
+
+Based on this, we can conclude that the current results are very sensitive to the chosen modes, as if we had continued with the initial 5 modes, we would have reached a total modal mass participation of 71.24% and 82.91% respectively. Based on this, we can conclude that the design outputs are highly sensitive to the upper limit of modes considered. Truncating the analysis at the initial 5 modes would omit approximately 20% of the dynamically participating mass in the X-direction. This would yield an artificial reduction in base shear, leading to a fundamentally unsafe underestimation of internal forces and structural displacement
+
 ## Maximum displacements and stresses based on the Response Spectrum Analysis
 
 
@@ -722,15 +737,6 @@ The narrow bandwidth of the Set 4 ground motion exposes a critical limitation of
 Finally, the mathematical combination of modal responses inherently renders the RSA more conservative. The RSA utilizes statistical combination rules (CQC used for Q5) which assume that the absolute peak responses of the individual modes occur simultaneously, yielding a theoretical upper-bound envelope of stresses. The THA calculates the response directly in the time domain, where the peak displacements of different modes occur at different fractions of a second. This lack of time-domain concurrency naturally prevents the structural deformations from stacking perfectly, further explaining the lower ultimate limit state (ULS) demands observed in the time history results.
 
 The RSA provides a highly conservative, code-compliant upper bound for the structural design by artificially ensuring that over 90% of the modal mass is subjected to peak spectral demands. While the THA utilizing Set 4 accurately captures the true time-domain behavior of the dominant structural modes, its jagged spectral profile fails to excite the higher-order modes, rendering it an unconservative metric if used in isolation for evaluating the global structural capacity.
-	
-
-## Choice of the modal upper bound and sensitivity anaysis
-
-As stated above, the amount of modes chosen previously (5 modes) was not sufficient for the total participation mass to be 90% of the modal mass. Therefore, more modes need to be taken into account. Additionally, the scope for directions of the seismic input motion is limited, and only the translational motion in the x- and y-direction will be taken into account. This choice is made based on the fact that the derived Empirical Response Spectra in Questions 1 and 2 show that the magnitude of the soil accelerations in the horizontal principal directions is much greater than for the vertical one. Next to it, the rotational directions are also not accounted for for simplicity. 
-
-To ensure the total modal mass participation reached the prescribed minimum, the first 102 modes of the structure were selected. This gave a total modal participation mass which was 91.16% of the total mass in the x-direction and 92.43% in the y-direction. This was the minimum amount of modes to fulfill this requirement. Even though a lot of the selected modes have a very small modal participation mass, modes which had a modal participation mass smaller than 0.3% of the total mass in both x- and y-direction were neglected, following the regulations of EN 1998-1. This meant that only 21 out of the 102 modes were relevant for the calculation, making the analysis much more efficient. 
-
-Based on this, we can conclude that the current results are very sensitive to the chosen modes, as if we had continued with the initial 5 modes, we would have reached a total modal mass participation of 71.24% and 82.91% respectively. Based on this, we can conclude that the design outputs are highly sensitive to the upper limit of modes considered. Truncating the analysis at the initial 5 modes would omit approximately 20% of the dynamically participating mass in the X-direction. This would yield an artificial reduction in base shear, leading to a fundamentally unsafe underestimation of internal forces and structural displacements.
 
 
 # Conclusion on the capacity of the structure
