@@ -1,28 +1,33 @@
 ﻿# CIEM5220 SRE Project - Part 2 Report
+| Student | Student ID |
+|---|---|
+| Jose Orlando Meija Sanchez | 6457037 |
+| Anna Werner| 6611257 |
+| JeongWoo Cho | 5127548 |
+| Gabriel Dalhuizen Izquierdo| 5829615 | 
+| Mohammed Wasay | 6416071 |
+
+
 
 This document combines the separate Part 2 report sections in the order of the assignment questions.
 
 <div style="page-break-after: always;"></div>
 
-# Questions 1 and 2
+# Question 1 
 
-**1) As part of the team of specialists, you are asked to use five sets of tri-axial ground
-motions provided and derive the motions in the three principal directions. For each
-tri-axial set of recordings decompose the two horizontal (as recorded) components
-in the principal directions and consider the vertical component acting along the
-third principal direction. Scale the derived horizontal ones such that the peak
-ground acceleration (PGA) has a value of $PGA_{hor} = a_{g,R} \cdot \gamma_I$. Scale the vertical
-component according to the instructions in the Python file distributed.
-You are asked to:
-a) Plot the elastic acceleration response spectra of the scaled signals as defined
-above along each principal direction for a damping ratio of $\xi = 0.04C$ and for
-periods between $T = 0.00$ sec and $T = 4.00$ sec.
-b) Derive the elastic response spectra (ERS) in the three principal directions
-corresponding to the mean value of the elastic spectra defined in question (1a).
-Explain the differences between the obtained ERS (mean value) and the ones
-of EN1998-1 (scaled to the same PGA).2**
+### 1) As part of the team of specialists, you are asked to use five sets of tri-axial ground motions provided and derive the motions in the three principal directions. For each tri-axial set of recordings decompose the two horizontal (as recorded) components in the principal directions and consider the vertical component acting along the third principal direction. Scale the derived horizontal ones such that the peak ground acceleration (PGA) has a value of $PGA_{hor} = a_{g,R} \cdot \gamma_I$. Scale the vertical component according to the instructions in the Python file distributed. You are asked to:
 
-Given the characteristics of the structural system, which is classified to be of importance class IV. Accordign to the EN1998-1 guidelines, $\gamma_I$ takes a value of 1.4. The acceleration of the ground is equal to 0.37$m/s^2$, which results in a PGA of 0.518$m/s^2$. Using a damping of 4.2%, gives the following elastic acceleration spectra of the scaled signals along each principal direction:
+### a) Plot the elastic acceleration response spectra of the scaled signals as defined above along each principal direction for a damping ratio of $\xi = 0.04C$ and for periods between $T = 0.00$ sec and $T = 4.00$ sec.
+
+### b) Derive the elastic response spectra (ERS) in the three principal directions corresponding to the mean value of the elastic spectra defined in question (1a). Explain the differences between the obtained ERS (mean value) and the ones of EN1998-1 (scaled to the same PGA).
+
+In seismic analysis, ground motions recorded at a specific station consist of three mutually orthogonal components (two horizontal and one vertical). However, the recorded orientations rarely align with the principal directions of the ground motion, which represent the axes of maximum, minimum, and intermediate ground acceleration variance.
+
+For the structural assessment, the horizontal recorded signals must be transformed into their principal directions. Mathematically, this is achieved by computing the covariance matrix of the two horizontal acceleration components and determining its eigenvalues and eigenvectors. The eigenvectors represent the principal axes, and projecting the original signals onto these axes yields the uncorrelated principal horizontal ground motions (Horizontal 1 and Horizontal 2).
+
+For each of the five sets of tri-axial accelerogram dataset, the time-history signals are decomposed into their principal horizontal components using the fnc_calc_covariance function, yielding independent signal vectors for Horizontal 1, Horizontal 2, and the Vertical direction.
+
+To ensure compatibility with the specific hazard level of the site, the principal signals are scaled. For a Class IV structure, the importance factor $\gamma_I$ is 1.4, and the reference peak ground acceleration $a_{gR}$ is calculated as 0.37 g. This yields a horizontal design Peak Ground Acceleration (PGA) of 0.518 g. The Horizontal 1 and Horizontal 2 components are uniformly scaled by the ratio of the target PGA to their respective initial absolute maximum PGA. The Vertical component is scaled proportionally using the scaling ratio derived from the primary Horizontal 1 direction, preserving the natural physical correlation between the horizontal and vertical energies of that specific earthquake record. The algorithm iterates through the natural periods $T_n$ = 0 to 4 [s] to compute the time-diamain response via numerical integration (`fnc_Elastic_Response_Spectrum`) using the structrual damping ratio of 4.2%. 
 
 - First horizontal direction
 
@@ -38,33 +43,85 @@ Given the characteristics of the structural system, which is classified to be of
 
 Taking the average of the sets for each direction, gives the elastic response spectra for each.
 
+
+
 ![ERS](MeanSpectra.png)
 
-**EXPLAIN DIFFERENCE WITH THE ONE IN THE EUROCODE.
 
-**2) The design team is interested in the inelastic response spectra:
-a) Derive the $R_y - \mu - T$ relationship, based on the Newmark and Hall (1982)
-formulation for ductility equal to $\mu = \max\{1.7D; 1.7F\}$ . Plot the inelastic
-acceleration response spectra for the $R_y - \mu - T$ relationship above, using
-the mean ERS as computed along the two principal horizontal directions in
-question (1b).
-b) Derive the exact constant ductility inelastic acceleration response spectra, for
-ductility equal to $\mu = \max\{1.7D; 1.7F\}$, of the five signals in question (1) when
-decomposed along the two principal (horizontal) directions, and compute the
-mean inelastic acceleration response spectra. Compare these with the ones
-derived by using the simplified $R_y - \mu - T$ relationship of Newmark-Hall
-(1982). What differences do you observe and why?**
+The idealized Elastic Response Spectrum in EN1998-1 is a smoothed, conservative envelope designed to account for uncertainties in structural frequency and local site amplification. The shape of this spectrum is strictly governed by the expected seismic hazard and the geotechnical profile of the site.
+
+The given geotechnical parameters classify the site and Ground Type D. Likewise, the maximum expected surface wave magnitude is $M_s = 5.0$. Because $M_s \le 5.5$, EN1998-1 mandates the use of a Type 2 spectrum. 
+
+For a Type 2 spectrum on Ground Type D, EN1998-1 defines the soil factor $S = 1.8$, and the significant periods as $T_B = 0.10$ s, $T_C = 0.30$ s, and $T_D = 1.2$ s.
+
+The code-defined spectra are normalized to 5% viscous damping. For the structural damping of 4.2%, a damping correction factor $\eta$ is applied to the spectral ordinates:$$\eta = \sqrt{\frac{10}{5 + \xi}} = \sqrt{\frac{10}{5 + 4.2}} \approx 1.042$$
+
+The horizontal elastic acceleration response spectrum $S_e(T)$ is computed using the following piece-wise formulation:
+
+- Short Period Branch ($0 \le T \le T_B$):$$S_e(T) = a_g \cdot S \cdot \left[ 1 + \frac{T}{T_B} (\eta \cdot 2.5 - 1) \right]$$
+- Constant Acceleration Plateau ($T_B \le T \le T_C$):$$S_e(T) = a_g \cdot S \cdot \eta \cdot 2.5$$
+- Constant Velocity Branch ($T_C \le T \le T_D$):$$S_e(T) = a_g \cdot S \cdot \eta \cdot 2.5 \cdot \left( \frac{T_C}{T} \right)$$
+- Constant Displacement Branch ($T_D \le T \le 4.0\text{ s}$):$$S_e(T) = a_g \cdot S \cdot \eta \cdot 2.5 \cdot \left( \frac{T_C \cdot T_D}{T^2} \right)$$
+
+The vertical peak ground acceleration is taken as a ratio of the horizontal $a_g$ (for Type 2, $a_{vg}/a_g = 0.45$). The soil factor $S$ is explicitly set to 1.0, the amplification factor is increased to 3.0, and the control periods are shifted lower ($T_B = 0.05$ s, $T_C = 0.15$ s, $T_D = 1.0$ s).
+
+Plotting the ERS derived from the signals sets and that from the Eurocode per principal axis for comparison, we get the following plot: 
+
+![ERS_Q1](ERS_Q1.png)
+
+In both the Horizontal 1 and Horizontal 2 principal directions, the EN1998-1 design spectrum forms a massive, broad plateau reaching approximately 2.4g, extending from $T_B = 0.10$ s to $T_C = 0.30$ s. In contrast, the derived mean spectra peak at significantly lower values (approximately 1.3g to 1.4g) and exhibit narrow, jagged resonance bands rather than a sustained plateau. The overestimation of the horizontal ERS by the code is because the code is not meant to present a single earthquake. It is a statistically smoothed, conservative envelope designed to account for the uncertainty in calculating a building's exact fundamental period. The broad constant-acceleration plateau ensures that even if a building's stiffness degrades during an earthquake (causing its period to elongate), the design forces remain conservative. The derived mean, being an average of only five specific records, retains the narrow frequency bands unique to those specific fault ruptures.
+
+The derived mean of the vertical spectrum exhibits a violent, sharp peak reaching approximately 1.6g at a very short period ($T_n \approx 0.05$ s). This peak drastically exceeds the EN1998-1 vertical design spectrum, which maintains a low plateau of approximately 0.7g.
+This is because EN1998-1 explicitly drops the soil factor for vertical design spectra ($S = 1.0$), recognizing that vertical wave propagation is generally less affected by local soil yielding than horizontal shear waves. This keeps the idealized code plateau suppressed while the real records spike. 
+Not to mention that vertical ground motions (mainly P-waves) naturally carry much higher frequency energy than horizontal motions (predominantly S-waves and surface waves). This concentrates the vertical spectral energy into very narrow, sharp spikes at low periods, exactly as observed in the derived plot.
+
+
+
+### 2) The design team is interested in the inelastic response spectra:
+### a) Derive the $R_y - \mu - T$ relationship, based on the Newmark and Hall (1982) formulation for ductility equal to $\mu = \max\{1.7D; 1.7F\}$ . Plot the inelastic acceleration response spectra for the $R_y - \mu - T$ relationship above, using the mean ERS as computed along the two principal horizontal directions in question (1b).
+
+Structural systems are designed to yield and dissipate energy through plastic deformation, quantified by the ductility factor ($\mu$). The Indirect method simplifies the calculation of inelastic demands by applying a yield strength reduction factor ($R_y$), which depends on the natural period, directly to the previously calculated Elastic Response Spectrum (ERS). 
+-  ($T_n \le 0.05$ s): $R_y = 1$
+-  ($0.12 \text{ s} < T_n \le 0.5 \text{ s}$): $R_y = \sqrt{2\mu - 1}$
+- ($T_n > 1.0$ s): $R_y = \mu$
+- For periods inbetween the bounds ($0.05 \text{ s} < T_n \le 0.12 \text{ s}$ and $0.5 \text{ s} < T_n \le 1.0 \text{ s}$), linear interpolation is used to connect the $R_y$ values. 
+
+The resulting spectrum is a direct scalar reduction of the elastic mean, preserving the general spectral shape but capping the maximum acceleration demands based on the assigned structural ductility.
 
 Computing the inelastic acceleration response spectra for the $R_y - \mu - T$ relationship based on Newmark and Hall, using the mean ERS along the two principal horizontal directions, gives the following spectra:
 
-![IERS](MeanSpectra.png)
+![IERS](IERS_indirect.png)
 
-Computing the constant ductility inelastic acceleration response spectra of the five signals in question when
-decomposed along the two principal horizontal directions, gives the following spectra:
+### b) Derive the exact constant ductility inelastic acceleration response spectra, for ductility equal to $\mu = \max\{1.7D; 1.7F\}$, of the five signals in question (1) when decomposed along the two principal (horizontal) directions, and compute the mean inelastic acceleration response spectra. Compare these with the ones derived by using the simplified $R_y - \mu - T$ relationship of Newmark-Hall (1982). What differences do you observe and why?
 
-![DERS](MeanSpectra.png)
+The structural equation of motion for an elasto-plastic system includes a non-linear restoring force $f_s(x, \dot{x})$, which behaves elastically until the yield force ($f_y$) is reached, after which stiffness drops to zero (assuming perfect elasto-plasticity). Because the stiffness state depends on the prior deformation history (hysteresis), the response must be calculated step-by-step using a numerical integration scheme. 
 
-**EXPLAIN DIFFERENCES
+The iterative solution procedure for every natural period is as follows: 
+1. The solver assumes an initial yield strength reduction factor($R_y = 1$, where $f_y = f_{elastic}$).
+2. The Newmark-$\beta$ solver executes a full time-history analysis over the duration of the earthquake signal, capturing the maximum absolute displacement ($x_{max}$).
+3. The achieved ductility demand is calculated as $\mu_{demand} = x_{max} / x_y$, where $x_y$ is the yield displacement.
+4. The error between $\mu_{demand}$ and $\mu_{target}$ is evaluated. If the error exceeds an acceptable tolerance, the yield strength $f_y$ is systematically adjusted (lowered if ductility is too low, raised if ductility is too high), and the full time-history integration is repeated.
+5. Once the target ductility is achieved within the tolerance, the peak acceleration of that specific iteration is recorded as the exact $S_{a,inelastic}$ for that period.
+
+To fulfill the analytical requirements, this iterative procedure is executed independently across all 5 scaled ground motion signals. The 5 resulting highly variable direct spectra are then averaged to produce the final mean Direct Inelastic Response Spectrum. 
+![DERS](IERS_direct.png)
+
+When comparing the Direct Inelastic Spectrum (derived via iterative time-history analysis) with the Indirect Inelastic Spectrum (derived via the Newmark-Hall $R_y-\mu-T_n$ relationship), we can see that:
+- Both spectra initiate at the exact same Spectral Acceleration value (approximately 0.52 g).
+- In the higher period ranges, both curves decay smoothly and match each other almost perfectly, tracking very close to zero spectral acceleration.
+- The main differences lie in between 0.1 < T < 0.6. While both spectra exhibit jagged peaks reaching approximately 1.2 g to 1.3 g, the Indirect spectrum maintains the general shape of the elastic spectrum, whereas the Direct spectrum exhibits shifted peaks, slightly different peak magnitudes, and a generally altered frequency profile.
+
+The Rigid Boundary ($T_n = 0$ s)
+
+At a period of zero seconds, a structure is infinitely stiff and moves in perfect phase with the ground. Because there is no relative deformation, there is no yielding, meaning ductility ($\mu$) plays no role. Both methods correctly recognize that $R_y = 1$, and therefore both spectra mathematically converge at the Peak Ground Acceleration (PGA).
+
+The Velocity-Sensitive Region ($0.1 \text{ s} < T_n \le 0.5 \text{ s}$)
+
+The Newmark-Hall method reduces theelastic spectrum by a constant factor of $\sqrt{2\mu-1}$, which is a statistical average. Consequently, it preserves the general shape of the elastic spectra. However, it fails to capture non-linear phenomena such as hysteric damping, which the direct method captures. As the structure undergoes plastic deformation, it dissipates energy through hysteresis. This acts as additional damping (beyond the assumed 4.2% viscous damping), actively suppressing the peak spectral accelerations in ways a simple constant factor cannot fully capture. 
+
+The Displacement-Sensitive Region ($T_n > 1.0$ s)
+
+ For very flexible structures, the total maximum displacement of a yielding system is practically identical to that of an elastic system. Therefore, reducing the elastic force by a factor of $\mu$ is highly accurate. Because this statistical assumption holds very well in reality, the empirical Indirect curve and the exact Direct curve converge in for high periods.
 
 <div style="page-break-after: always;"></div>
 
