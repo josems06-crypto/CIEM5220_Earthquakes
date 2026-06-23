@@ -1142,7 +1142,7 @@ The numerical peak response at level 2 is:
 
 | Quantity | Fixed-base model | SSI model |
 | --- | ---: | ---: |
-| Peak acceleration amplification $\left|a_{\mathrm{abs}}/a_g\right|$ | $11.954$ | $12.095$ |
+| Peak acceleration amplification $\lvert a_{\mathrm{abs}}/a_g\rvert$ | $11.954$ | $12.095$ |
 | Frequency at acceleration peak | $6.190\ \mathrm{Hz}$ | $5.881\ \mathrm{Hz}$ |
 | Maximum relative displacement amplitude | $38.832\ \mathrm{mm}$ | $43.693\ \mathrm{mm}$ |
 
