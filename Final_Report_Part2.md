@@ -1,18 +1,6 @@
-**1) As part of the team of specialists, you are asked to use five sets of tri-axial ground
-motions provided and derive the motions in the three principal directions. For each
-tri-axial set of recordings decompose the two horizontal (as recorded) components
-in the principal directions and consider the vertical component acting along the
-third principal direction. Scale the derived horizontal ones such that the peak
-ground acceleration (PGA) has a value of $PGA_{hor} = a_{g,R} \cdot \gamma_I$. Scale the vertical
-component according to the instructions in the Python file distributed.
-You are asked to:
-a) Plot the elastic acceleration response spectra of the scaled signals as defined
-above along each principal direction for a damping ratio of $\xi = 0.04C$ and for
-periods between $T = 0.00$ sec and $T = 4.00$ sec.
-b) Derive the elastic response spectra (ERS) in the three principal directions
-corresponding to the mean value of the elastic spectra defined in question (1a).
-Explain the differences between the obtained ERS (mean value) and the ones
-of EN1998-1 (scaled to the same PGA).2**
+# Q1
+
+## Empirical Elastic Response Spectra
 
 Given the characteristics of the structural system, which is classified to be of importance class IV. Accordign to the EN1998-1 guidelines, $\gamma_I$ takes a value of 1.4. The acceleration of the ground is equal to 0.37$m/s^2$, which results in a PGA of 0.518$m/s^2$. Using a damping of 4.2%, gives the following elastic acceleration spectra of the scaled signals along each principal direction:
 
@@ -34,18 +22,9 @@ Taking the average of the sets for each direction, gives the elastic response sp
 
 **EXPLAIN DIFFERENCE WITH THE ONE IN THE EUROCODE.
 
-**2) The design team is interested in the inelastic response spectra:
-a) Derive the $R_y - \mu - T$ relationship, based on the Newmark and Hall (1982)
-formulation for ductility equal to $\mu = \max\{1.7D; 1.7F\}$ . Plot the inelastic
-acceleration response spectra for the $R_y - \mu - T$ relationship above, using
-the mean ERS as computed along the two principal horizontal directions in
-question (1b).
-b) Derive the exact constant ductility inelastic acceleration response spectra, for
-ductility equal to $\mu = \max\{1.7D; 1.7F\}$, of the five signals in question (1) when
-decomposed along the two principal (horizontal) directions, and compute the
-mean inelastic acceleration response spectra. Compare these with the ones
-derived by using the simplified $R_y - \mu - T$ relationship of Newmark-Hall
-(1982). What differences do you observe and why?**
+# Q2
+
+## Empirical Inelastic Response Spectra
 
 Computing the inelastic acceleration response spectra for the $R_y - \mu - T$ relationship based on Newmark and Hall, using the mean ERS along the two principal horizontal directions, gives the following spectra:
 
@@ -277,8 +256,9 @@ $$
 
 The very small contribution in the orthogonal $X$-direction indicates that Mode 1 is predominantly translational in the $Y$-direction. Although some torsional coupling is present, the response remains primarily governed by $Y$-translation. Consequently, pushover analysis is considered an appropriate method for estimating the global seismic capacity of the structure in the $Y$-direction. However, the contribution of Mode 4 and its significant torsional component should be considered when interpreting the results.
 
-4) Perform a dynamic time history analysis with one set of input accelerations derived in question (1) along the principal directions. You are free to choose any set of triaxial motions (from the list provided) as well as the directions in which you apply the motions in the horizontal plane. Please report the following:
-a) Substantiate your choice as to directions in which you apply the horizontal components of the ground excitation. You are not asked to perform multiple seismic analysis here but simply to explain your choice.
+# Q4
+
+## Time History Analysis
 
 A computational routine was developed to construct the Elastic Response Spectra (ERS) for each principal direction of the unscaled ground motions. The algorithm applies a peak ground acceleration (PGA) scaling factor in accordance with the target design spectrum, defined by a structural damping ratio of 4.2%. The time-domain signals were converted into the frequency domain using numerical integration, yielding the Spectral Acceleration ($SA$) as a function of the natural period ($T_n$). This allows for a direct comparison between the energy demands of the earthquakes and the resonant frequencies of the structure.
 
@@ -363,7 +343,8 @@ X-Axis Maximization (Horizontal 1): The primary horizontal component of Set 4 co
 
 Y-Axis Maximization (Horizontal 2): Concurrently, the orthogonal component of Set 4 (Horizontal 2) exhibits a distinct spectral peak that crests precisely across the 0.20 to 0.30 s range. By aligning this specific excitation component with the Y-axis (Ty = 0.21 s), the orthogonal structural system is hit with near-peak acceleration demands at the exact same moment the X-axis is maximized.
 
-b) Determine the maximum displacements and stresses as well as their critical locations and explain why the chosen locations are considered critical.
+## Maximum displacements and stresses based on the Time History Analysis
+
 
 The time history analysis was conducted with the two horizontal excitations inputted accordingly into the corresponding x and y axes in an accelerogram. Implementing the linear modal analysis rather than linear implicit Neumark to save computational time. The time step was 0.01[s] with split saved time steps of 10. 
 
@@ -410,7 +391,7 @@ Figure 4: Stress point No. 21 (location of max axial stress)
 
 Under global lateral excitation, the multi-story frame behaves macroscopically as a vertical cantilever. The inertial forces generated by the mass of each floor level accumulate downwards through the load path. Consequently, the base columns must resist the maximum global base shear. Furthermore, the lateral sway of the upper stories generates a massive global overturning moment. As the building oscillates, the exterior columns parallel to the direction of motion experience alternating cycles of extreme axial compression and tension, coupled with maximum bending stress. This combined stress state makes the foundation-level boundary elements the most critical components for seismic capacity.
 
-c) Conclude as to the seismic capacity of the structure.
+# Conclusion on the capacity of the structure
 
 To determine the final seismic capacity of the structure, the maximum dynamic demands (internal forces and global displacements) obtained from the time history analysis must be evaluated against the mechanical resistance of the frame. The structure is composed of HEB 240 cross-sections utilizing S355 structural steel.
 
@@ -425,32 +406,13 @@ The dynamic time history analysis proves that the structure has sufficient seism
 
 A comparative review of the global structural demands reveals a substantial discrepancy between the results of the Response Spectrum Analysis (Q5) and the linear Time History Analysis (Q4). The global displacements and internal stresses derived from the RSA significantly exceed those obtained from the THA—with the maximum RSA displacement in the Y-direction (34.2 mm) nearly tripling the corresponding THA displacement (11.5 mm). The remainder of this report is dedicated to justifying the reasoning behind the disrepancy between the results of RSA and THA.
 
--------------------------------------
-Discrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
------------------------------------------
 
 
+# Q5
+
+## Response Spectrum Analysis
 
 
-1. Spectral Shape: The Broadened Envelope vs. The Specific Ground Motion
-
-The primary driver of the conservative RSA results is the nature of the seismic input. The Eurocode design spectrum used in the RSA is an artificially broadened, smoothed envelope designed to account for a wide array of geological uncertainties. It features a sustained plateau of maximum spectral acceleration that spans a broad range of structural periods. Consequently, almost all significant modes of the structure are subjected to maximum or near-maximum inertial forces simultaneously.
-
-Conversely, the THA relies on a specific, raw acceleration record (Set 4). While Set 4 was methodically selected because its narrow, jagged spectral peaks coincided reasonably  with the structure’s dominant natural periods ($T_x = 0.066$ s and $T_y = 0.21$ s), real earthquake records are highly irregular. The energy content of Set 4 drops off precipitously outside of these specific resonant spikes. The peak excites the dominant  fundamental periods intensely, but fails to deliver sustained energy across the broader frequency spectrum.
-
-2. Modal Mass Participation 
-
-The narrow bandwidth of the Set 4 ground motion exposes a critical limitation of the time history approach. The eigenvalue analysis demonstrated that the dominant fundamental modes (Mode 4 for the X-direction and Mode 1 for the Y-direction) only mobilize approximately 49.4% and 60.6% of the structure's effective modal mass respectively. The remaining 40% to 50% of the mass relies on the excitation of the other modes to contribute to the dynamic response. In the RSA procedure, 102 modes were explicitly combined to achieve the code-mandated >90% mass participation threshold. Because the Eurocode spectrum is broadly elevated, these higher-order modes were actively excited and contributed significantly to the cumulative base shear and global drift. In contrast, during the THA, the Set 4 ground motion lacked the necessary frequency content to excite these specific higher-order modes. As a result, nearly half of the structure's dynamic mass remained virtually unexcited during the time history simulation, leading to a drastically reduced global structural response.
-
-3. Peak Concurrency vs. Statistical Combination
-
-Finally, the mathematical combination of modal responses inherently renders the RSA more conservative. The RSA utilizes statistical combination rules (CQC used for Q5) which assume that the absolute peak responses of the individual modes occur simultaneously, yielding a theoretical upper-bound envelope of stresses. The THA calculates the response directly in the time domain, where the peak displacements of different modes occur at different fractions of a second. This lack of time-domain concurrency naturally prevents the structural deformations from stacking perfectly, further explaining the lower ultimate limit state (ULS) demands observed in the time history results.
-
-The RSA provides a highly conservative, code-compliant upper bound for the structural design by artificially ensuring that over 90% of the modal mass is subjected to peak spectral demands. While the THA utilizing Set 4 accurately captures the true time-domain behavior of the dominant structural modes, its jagged spectral profile fails to excite the higher-order modes, rendering it an unconservative metric if used in isolation for evaluating the global structural capacity.
-
-**5) Perform the response spectrum method of analysis (RSA) using the design spectra provided in Eurocode (EN1998-1) and report the following results:**
-
-**a) Plot the first five eigenmodes of the system together with their correspondent eigenfrequencies. Derive the modal participation mass for each of the five modes (in each direction). What do you observe as to the (potential) contribution of the different modes to the final response of the system?**
 
 A modal analysis was performed based on the existing finite element model of the structure. As requested, the amount of modes captured was limited to five, each including the corresponding natural frequency and modal participation mass per mode and per direction. From it, the following eigenmodes were obtained for the first five modes:
 
@@ -655,7 +617,8 @@ Based on the modal analysis, the modal participation mass for each of the five m
 
 As it can be observed from the previous results, the total modal participation mass of the five modes is below the prescribed minimum of 90% of the total mass, this holds for all directions. This means that if performed with this amount of modes, the analysis could not be concluded to be accurate enough to represent the real behavior of the structure due to seismic loading. Further on, the modal participation mass of some modes in certain directions can be observed to be almost negligible. To ensure the analysis is performed within the requirements as well as in an efficient manner, it will be ensured that a right amount of modes are chosen so that the total modal participation mass reaches 90% of the total mass, and modes which can be neglected will not be taken into account for the calculation. 
 
-**b) Determine the maximum displacements and stresses at the critical sections. Please substantiate your choice as to the modal combination rules used for: i) the structural modes; and ii) the different directions of the seismic input motion. Are the critical cross-sections the same as the ones found in Question 4 above?**
+## Maximum displacements and stresses based on the Response Spectrum Analysis
+
 
 The maximum displacements located at their corresponding critical cross-sections which follow from the Response Spectra Analysis are the following: 
 
@@ -737,10 +700,31 @@ The structural checks under seismic loading condition RC1 show that all examined
 
 The modal combination rule used for the structural modes is chosen to be a Complete Quadratic Combination (CQC) by using equivalent linear combination. This choice was made based on the fact that some of the eigenmodes show to be very close to each other (see for example mode 2 and mode 3). When the eigenfrequencies of those certain modes differ by less than 10%, their modal responses are statistically dependent and can couple; the simple SRSS rule would unsafely ignore this interaction, whereas CQC correctly accounts for it via cross-modal correlation coefficients. For the different directions of the seismic input, it was chosen to make use of the Scaled Sum, with a factor of 100% / 30%, as it is the most realistic combination as well as a conservative approach, wihtout being as overly conservative as the absolute sum is, recommended by EN 1998-1. 
 
-The critical cross-sections are not the same ones as in Q4. blablabla	
 
 
-**c) How did you choose the upper limit of modes to be considered in the final response of the system? Are the results sensitive to this choice and why? Please substantiate your answer.**
+## Discrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
+
+
+
+
+1. Spectral Shape: The Broadened Envelope vs. The Specific Ground Motion
+
+The primary driver of the conservative RSA results is the nature of the seismic input. The Eurocode design spectrum used in the RSA is an artificially broadened, smoothed envelope designed to account for a wide array of geological uncertainties. It features a sustained plateau of maximum spectral acceleration that spans a broad range of structural periods. Consequently, almost all significant modes of the structure are subjected to maximum or near-maximum inertial forces simultaneously.
+
+Conversely, the THA relies on a specific, raw acceleration record (Set 4). While Set 4 was methodically selected because its narrow, jagged spectral peaks coincided reasonably  with the structure’s dominant natural periods ($T_x = 0.066$ s and $T_y = 0.21$ s), real earthquake records are highly irregular. The energy content of Set 4 drops off precipitously outside of these specific resonant spikes. The peak excites the dominant  fundamental periods intensely, but fails to deliver sustained energy across the broader frequency spectrum.
+
+2. Modal Mass Participation 
+
+The narrow bandwidth of the Set 4 ground motion exposes a critical limitation of the time history approach. The eigenvalue analysis demonstrated that the dominant fundamental modes (Mode 4 for the X-direction and Mode 1 for the Y-direction) only mobilize approximately 49.4% and 60.6% of the structure's effective modal mass respectively. The remaining 40% to 50% of the mass relies on the excitation of the other modes to contribute to the dynamic response. In the RSA procedure, 102 modes were explicitly combined to achieve the code-mandated >90% mass participation threshold. Because the Eurocode spectrum is broadly elevated, these higher-order modes were actively excited and contributed significantly to the cumulative base shear and global drift. In contrast, during the THA, the Set 4 ground motion lacked the necessary frequency content to excite these specific higher-order modes. As a result, nearly half of the structure's dynamic mass remained virtually unexcited during the time history simulation, leading to a drastically reduced global structural response.
+
+3. Peak Concurrency vs. Statistical Combination
+
+Finally, the mathematical combination of modal responses inherently renders the RSA more conservative. The RSA utilizes statistical combination rules (CQC used for Q5) which assume that the absolute peak responses of the individual modes occur simultaneously, yielding a theoretical upper-bound envelope of stresses. The THA calculates the response directly in the time domain, where the peak displacements of different modes occur at different fractions of a second. This lack of time-domain concurrency naturally prevents the structural deformations from stacking perfectly, further explaining the lower ultimate limit state (ULS) demands observed in the time history results.
+
+The RSA provides a highly conservative, code-compliant upper bound for the structural design by artificially ensuring that over 90% of the modal mass is subjected to peak spectral demands. While the THA utilizing Set 4 accurately captures the true time-domain behavior of the dominant structural modes, its jagged spectral profile fails to excite the higher-order modes, rendering it an unconservative metric if used in isolation for evaluating the global structural capacity.
+	
+
+## Choice of the modal upper bound and sensitivity anaysis
 
 As stated above, the amount of modes chosen previously (5 modes) was not sufficient for the total participation mass to be 90% of the modal mass. Therefore, more modes need to be taken into account. Additionally, the scope for directions of the seismic input motion is limited, and only the translational motion in the x- and y-direction will be taken into account. This choice is made based on the fact that the derived Empirical Response Spectra in Questions 1 and 2 show that the magnitude of the soil accelerations in the horizontal principal directions is much greater than for the vertical one. Next to it, the rotational directions are also not accounted for for simplicity. 
 
@@ -749,10 +733,386 @@ To ensure the total modal mass participation reached the prescribed minimum, the
 Based on this, we can conclude that the current results are very sensitive to the chosen modes, as if we had continued with the initial 5 modes, we would have reached a total modal mass participation of 71.24% and 82.91% respectively. Based on this, we can conclude that the design outputs are highly sensitive to the upper limit of modes considered. Truncating the analysis at the initial 5 modes would omit approximately 20% of the dynamically participating mass in the X-direction. This would yield an artificial reduction in base shear, leading to a fundamentally unsafe underestimation of internal forces and structural displacements.
 
 
-**d) Conclude as to the seismic capacity of the structure.**
+# Conclusion on the capacity of the structure
 
 Seismic capacity is governed by lateral stiffness to prevent structural instability (P-Delta effects) and severe damage. The total height of the structure is H = 5.035 [m]. The maximum absolute deformation occurred at the roof level: Maximum Global Displacement ($\Delta_{max}$): 34.8 [mm]
 
 The global drift ratio Global Design Drift Ratio is calculated as:$$Global Design Drift Ratio = \nu * \frac{\Delta_{max}}{H} = 0.5 * \frac{34.8 \text{ mm}}{5035 \text{ mm}} = 0.0035 \text{ rad} \approx \mathbf{0.35\%}$$A global drift ratio of 0.35% is well within standard acceptable limits for the ultimate limit state of steel frames under seismic loading (which typically allow drifts under 0.5% to ensure life safety and prevent collapse).
 
 The Response Spectra analysis proves that the structure has sufficient seismic capacity. The substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 44.5% of the S355 steel's yield threshold, while the overall frame stiffness restricts global deformations to a safe 0.35% drift ratio. Therefore, the building will comfortably survive the assigned bi-directional seismic event with no structural damage.  
+
+# Q6
+
+## a) Response spectrum analysis with elastic foundation support
+
+The dynamic SSI effects were first approximated in RFEM by replacing the fixed base with a thick rigid foundation block supported by distributed elastic springs. This is a simplified RSA model: the structure is still analysed using the EC8 response spectrum, but the support is no longer perfectly fixed.
+
+### Soil and Foundation Properties
+
+The soil properties are taken from the Part 2 geotechnical investigation:
+
+| Property | Value |
+| --- | ---: |
+| Shear-wave velocity $V_{s,30}$ | $160\ \mathrm{m/s}$ |
+| Soil density $\rho$ | $1800\ \mathrm{kg/m^3}$ |
+| Poisson ratio $\nu$ | $0.33$ |
+| SPT value $N_{SPT}$ | $10$ blows per $0.3\ \mathrm{m}$ |
+| Undrained shear strength $c_u$ | $50\ \mathrm{kPa}$ |
+
+The shear modulus used for the elastic half-space is obtained from
+
+$$
+G = \rho V_s^2 = 1800(160)^2 = 46.08\ \mathrm{MPa}.
+$$
+
+The RFEM foundation block has a contact area
+
+$$
+A_b = 18.603\ \mathrm{m^2}.
+$$
+
+For use with the half-space formulas, this area is replaced by an equivalent square foundation,
+
+$$
+A_b = (2B)^2,
+\qquad
+B = \sqrt{\frac{A_b}{4}} = 2.157\ \mathrm{m},
+$$
+
+so the equivalent square side length is
+
+$$
+2B = 4.313\ \mathrm{m}.
+$$
+
+### Elastic Spring Stiffness
+
+Using the SSI guideline formulas for a square surface foundation, the horizontal and vertical static stiffnesses are approximated as
+
+$$
+K_y = \frac{9GB}{2-\nu},
+\qquad
+K_z = \frac{4.54GB}{1-\nu}.
+$$
+
+The rocking stiffness about the horizontal axis is
+
+$$
+K_{rx} = \frac{3.6GB^3}{1-\nu}.
+$$
+
+Substitution gives:
+
+| Stiffness | Value | Use in RFEM model |
+| --- | ---: | --- |
+| $K_x = K_y$ | $5.36\times10^8\ \mathrm{N/m}$ | global horizontal support stiffness |
+| $K_z$ | $6.73\times10^8\ \mathrm{N/m}$ | vertical support stiffness |
+| $K_{rx}=K_{ry}$ | $2.48\times10^9\ \mathrm{N\,m/rad}$ | equivalent rocking flexibility |
+
+For a distributed surface support, the translational stiffnesses are divided by the contact area:
+
+$$
+k_x = k_y = \frac{K_y}{A_b}=28.79\ \mathrm{MN/m^3},
+\qquad
+k_z = \frac{K_z}{A_b}=36.20\ \mathrm{MN/m^3}.
+$$
+
+These values were used as the elastic foundation support stiffnesses. The rocking flexibility is not entered as an independent spring in the distributed-support model; it emerges from the deformation pattern of the spring-supported rigid foundation block.
+
+### RSA Results with Foundation Springs
+
+The response spectrum analysis with the elastic foundation support gave the following maximum deformations:
+
+| Response quantity | Value | Location |
+| --- | ---: | --- |
+| Maximum displacement in $X$ | $1.5\ \mathrm{mm}$ | Member 30, $x=2.470\ \mathrm{m}$ |
+| Maximum displacement in $Y$ | $23.8\ \mathrm{mm}$ | Member 230, $x=1.150\ \mathrm{m}$ |
+| Maximum displacement in $Z$ | $3.1\ \mathrm{mm}$ | FE node 186, $(-0.680,\ 2.613,\ 0.000)\ \mathrm{m}$ |
+| Maximum vectorial displacement | $23.9\ \mathrm{mm}$ | Member 28, $x=2.470\ \mathrm{m}$ |
+| Maximum rotation about $X$ | $5.1\ \mathrm{mrad}$ | Member 27, $x=0.741\ \mathrm{m}$ |
+| Maximum rotation about $Y$ | $0.8\ \mathrm{mrad}$ | Member 193, $x=0.214\ \mathrm{m}$ |
+| Maximum rotation about $Z$ | $1.7\ \mathrm{mrad}$ | Member 462, $x=0.643\ \mathrm{m}$ |
+
+The governing displacement remains the lateral displacement in the global $Y$ direction. This is consistent with the modal basis used earlier, where the dominant horizontal mode also acted mainly in the global $Y$ direction.
+
+### Comparison with the Fixed-Base RSA of Q5
+
+Compared with the fixed-base RSA results of Q5, the elastic-foundation model gives:
+
+| Response quantity | Fixed-base Q5 | Elastic foundation Q6a | Change |
+| --- | ---: | ---: | ---: |
+| Maximum displacement in $X$ | $6.5\ \mathrm{mm}$ | $1.5\ \mathrm{mm}$ | $-77\%$ |
+| Maximum displacement in $Y$ | $34.2\ \mathrm{mm}$ | $23.8\ \mathrm{mm}$ | $-30\%$ |
+| Maximum displacement in $Z$ | $3.7\ \mathrm{mm}$ | $3.1\ \mathrm{mm}$ | $-16\%$ |
+| Maximum vectorial displacement | $34.8\ \mathrm{mm}$ | $23.9\ \mathrm{mm}$ | $-31\%$ |
+| Maximum rotation about $X$ | $22.5\ \mathrm{mrad}$ | $5.1\ \mathrm{mrad}$ | $-77\%$ |
+| Maximum rotation about $Y$ | $2.0\ \mathrm{mrad}$ | $0.8\ \mathrm{mrad}$ | $-60\%$ |
+| Maximum rotation about $Z$ | $6.4\ \mathrm{mrad}$ | $1.7\ \mathrm{mrad}$ | $-73\%$ |
+
+The RFEM RSA result with elastic foundation support gives smaller maximum deformations than the fixed-base result from Q5. The maximum displayed global $Y$ displacement decreases from $34.2\ \mathrm{mm}$ to $23.8\ \mathrm{mm}$, and the maximum vectorial displacement decreases from $34.8\ \mathrm{mm}$ to $23.9\ \mathrm{mm}$.
+
+This reduction should not be interpreted as a general rule that SSI always reduces response. It is a result of this particular response-spectrum model. Changing the support condition changes the modal periods, modal participation factors, and the spectral ordinates sampled by the modes. The distributed spring-supported foundation therefore modifies the modal combination, which in this case leads to lower peak RSA displacements and rotations.
+
+## b) Frequency-domain generalized SDOF analysis
+
+The second SSI assessment is performed in the frequency domain. The purpose is not to repeat the full RFEM response spectrum analysis, but to compare the fixed-base response with an equivalent generalized SDOF model that includes dynamic soil-foundation interaction.
+
+### Step 1: Generalized SDOF Reduction
+
+The structural part is reduced to the dominant RFEM mode in the major horizontal direction. The generalized displacement coordinate is denoted by $q(t)$, so the lateral displacement of a point at height $z_j$ is approximated as
+
+$$
+u_j(t) \approx \psi_j q(t).
+$$
+
+The RFEM modal data used for the reduced model are:
+
+| Quantity | Value |
+| --- | ---: |
+| First-mode frequency $f_1$ | $6.20\ \mathrm{Hz}$ |
+| Circular frequency $\omega_1$ | $38.956\ \mathrm{rad/s}$ |
+| Generalized mass $m^\ast$ | $2422.5\ \mathrm{kg}$ |
+| Effective modal mass in $Y$ | $8063.7\ \mathrm{kg}$ |
+| Generalized load factor $L$ | $4419.8\ \mathrm{kg}$ |
+| Generalized stiffness $k^\ast=m^\ast\omega_1^2$ | $3.676\times10^6\ \mathrm{N/m}$ |
+| Damping ratio $\xi$ | $5\%$ |
+| Generalized damping $c^\ast=2\xi\omega_1m^\ast$ | $9.437\times10^3\ \mathrm{Ns/m}$ |
+
+The first-mode ordinates were obtained by averaging the normalized RFEM $u_Y$ displacements over all mesh nodes at each level. This is preferable to using a single reference node because the frame does not behave as a rigid diaphragm and the modal displacement varies across each level.
+
+| Level | Height $z$ [m] | Normalized displacement $\psi$ |
+| --- | ---: | ---: |
+| 1 | $2.47$ | $0.42672$ |
+| 2 | $4.94$ | $0.65253$ |
+
+![First mode shape used for the generalized SDOF model](images/part2_q6_first_mode_shape.png)
+
+*Figure 1. First RFEM mode shape used to recover the response at the two levels. The markers show the level-averaged modal ordinates, while the horizontal bars show the range of mesh-node values at each level.*
+
+The ideal input for this calculation would be a complete RFEM nodal mass export: a table listing each relevant mass node, its lumped translational mass, its height coordinate, and its mode-1 displacement ordinate. With that information, the generalized quantities could be computed directly by summing over all nodes. Since only the mode-shape ordinates were available, the missing mass moments were estimated using a two-level surrogate. The two unknown level masses were fitted such that the known generalized mass $m^\ast$ and generalized load factor $L$ are reproduced:
+
+$$
+m^\ast = m_1\psi_1^2 + m_2\psi_2^2,
+\qquad
+L = m_1\psi_1 + m_2\psi_2.
+$$
+
+This gives:
+
+| Quantity | Value |
+| --- | ---: |
+| $m_1$ at level 1 | $4789.7\ \mathrm{kg}$ |
+| $m_2$ at level 2 | $3641.0\ \mathrm{kg}$ |
+| $H$ | $16785.3\ \mathrm{kg\,m}$ |
+| $M_r$ | $54939.8\ \mathrm{kg}$ |
+| $S$ | $53071.9\ \mathrm{kg\,m}$ |
+| $J$ | $205679.8\ \mathrm{kg\,m^2}$ |
+
+This approximation is acceptable for the present frequency-domain comparison because it preserves the modal mass and modal participation of the dominant mode. A more refined model would replace this surrogate with the full RFEM nodal mass distribution.
+
+### Step 2: Soil Dynamic Stiffness
+
+The soil is modeled as a homogeneous half-space. The properties are taken from the Part 2 geotechnical investigation:
+
+| Property | Value |
+| --- | ---: |
+| Shear-wave velocity $V_s$ | $160\ \mathrm{m/s}$ |
+| Soil density $\rho$ | $1800\ \mathrm{kg/m^3}$ |
+| Poisson ratio $\nu$ | $0.33$ |
+
+The corresponding shear modulus is
+
+$$
+G = \rho V_s^2 = 46.08\ \mathrm{MPa}.
+$$
+
+The RFEM foundation contact area is converted to an equivalent square foundation:
+
+$$
+A_b = 18.603\ \mathrm{m^2},
+\qquad
+B = \sqrt{\frac{A_b}{4}}=2.157\ \mathrm{m}.
+$$
+
+For a square surface foundation, the static horizontal and rocking stiffnesses are
+
+$$
+K_y=\frac{9GB}{2-\nu},
+\qquad
+K_{rx}=\frac{3.6GB^3}{1-\nu}.
+$$
+
+Numerically,
+
+$$
+K_y = 5.355\times 10^8\ \mathrm{N/m},
+\qquad
+K_{rx}=2.483\times 10^9\ \mathrm{N\,m/rad}.
+$$
+
+The dynamic stiffness terms are written as
+
+$$
+\tilde{k}_{yy}(\omega)=K_y + i\omega C_y,
+$$
+
+$$
+\tilde{k}_{\theta\theta}(\omega)=K_{rx}(1-0.20a_0)+i\omega C_{rx},
+\qquad
+a_0=\frac{\omega B}{V_s}.
+$$
+
+The radiation dashpots are estimated from the dimensional forms in the SSI guideline:
+
+$$
+C_y \approx \rho V_s A_b,
+\qquad
+C_{rx} \approx \rho V_p I_{bx}.
+$$
+
+The chart multipliers were taken as 1.0 because the SSI charts were not digitized. This gives:
+
+| Quantity | Value |
+| --- | ---: |
+| $C_y$ | $5.358\times10^6\ \mathrm{Ns/m}$ |
+| $C_{rx}$ | $1.649\times10^7\ \mathrm{Nms/rad}$ |
+
+The coupling terms $\tilde{k}_{y\theta}$ and $\tilde{k}_{\theta y}$ are neglected because the equivalent square foundation is assumed centered and symmetric.
+
+### Step 3: Coupled Frequency-Domain Equations
+
+The unknown frequency-domain coordinates are
+
+$$
+\mathbf{X}(\omega)=
+\begin{bmatrix}
+Q(\omega)\\
+U_l(\omega)\\
+\Theta_l(\omega)
+\end{bmatrix},
+$$
+
+where:
+
+- $Q(\omega)$ is the generalized structural deformation.
+- $U_l(\omega)$ is the additional horizontal foundation translation caused by SSI.
+- $\Theta_l(\omega)$ is the additional rocking rotation caused by SSI.
+
+Following the lecture notation, the free-field ground acceleration is the known input. The reference peak ground acceleration from Q3 is
+
+$$
+a_{gR}=(0.35+0.01C)g=(0.35+0.01)g=0.36g.
+$$
+
+For importance class IV, the importance factor is
+
+$$
+\gamma_I=1.4.
+$$
+
+Therefore, the design acceleration used in the notebook is
+
+$$
+\tilde{a}_g = \gamma_I a_{gR}=1.4(0.36g)=0.504g = 4.944\ \mathrm{m/s^2}.
+$$
+
+The coupled system is
+
+$$
+\left[
+\begin{array}{ccc}
+k^\ast+i\omega c^\ast-\omega^2m^\ast & -\omega^2L & -\omega^2H\\
+-\omega^2L & \tilde{k}_{yy}-\omega^2M_r & \tilde{k}_{y\theta}-\omega^2S\\
+-\omega^2H & \tilde{k}_{\theta y}-\omega^2S & \tilde{k}_{\theta\theta}-\omega^2J
+\end{array}
+\right]
+\mathbf{X}
+=
+-\tilde{a}_g
+\begin{bmatrix}
+L\\
+M_r\\
+S
+\end{bmatrix}.
+$$
+
+This is the generalized form of the lecture equations. The top equation is the equilibrium of the structural generalized mass, while the second and third equations are the horizontal force and rocking moment balances at the soil-foundation interface.
+
+### Step 4: Fixed-Base Reference Case
+
+To isolate the effect of SSI, the same generalized SDOF model is also solved without foundation flexibility:
+
+$$
+\left(k^\ast+i\omega c^\ast-\omega^2m^\ast\right)Q_{fb}
+=
+-L\tilde{a}_g.
+$$
+
+This comparison is important because it keeps the structural reduction and input motion identical. The only difference is whether the soil-foundation degrees of freedom $U_l$ and $\Theta_l$ are included.
+
+### Step 5: Response Recovery
+
+Once $Q$, $U_l$, and $\Theta_l$ are known, the relative displacement at a reference height is recovered as
+
+$$
+U_{\mathrm{rel},j}(\omega)
+=
+\psi_jQ(\omega)+U_l(\omega)+z_j\Theta_l(\omega).
+$$
+
+The absolute displacement also includes the free-field ground displacement,
+
+$$
+U_{\mathrm{abs},j}(\omega)
+=
+U_g(\omega)+U_{\mathrm{rel},j}(\omega),
+\qquad
+U_g(\omega)=-\frac{\tilde{a}_g}{\omega^2}.
+$$
+
+The absolute acceleration is then
+
+$$
+A_{\mathrm{abs},j}(\omega)
+=
+-\omega^2U_{\mathrm{abs},j}(\omega).
+$$
+
+### Step 6: Results
+
+The dynamic stiffness and displacement response obtained from the notebook are shown in Figure 2.
+
+![Soil stiffness and displacement response](images/part2_q6_soil_stiffness_and_displacement.png)
+
+*Figure 2. Dynamic soil stiffness terms and level 2 displacement response.*
+
+The displacement response for the Q3 design PGA is shown separately in Figure 3.
+
+![PGA displacement response](images/part2_q6_pga_displacement_response.png)
+
+*Figure 3. Displacement response at the two levels for $a_g=0.504g$.*
+
+The corresponding acceleration amplification is shown in Figure 4.
+
+![Acceleration amplification](images/part2_q6_acceleration_amplification.png)
+
+*Figure 4. Absolute acceleration amplification for the fixed-base and SSI generalized SDOF models.*
+
+The numerical peak response at level 2 is:
+
+| Quantity | Fixed-base model | SSI model |
+| --- | ---: | ---: |
+| Peak acceleration amplification $\left|a_{\mathrm{abs}}/a_g\right|$ | $11.954$ | $12.095$ |
+| Frequency at acceleration peak | $6.190\ \mathrm{Hz}$ | $5.881\ \mathrm{Hz}$ |
+| Maximum relative displacement amplitude | $38.832\ \mathrm{mm}$ | $43.693\ \mathrm{mm}$ |
+
+### Interpretation
+
+The SSI model shifts the peak response from approximately $6.19\ \mathrm{Hz}$ to $5.88\ \mathrm{Hz}$. This reduction in frequency is physically expected because foundation translation and rocking add flexibility to the system. The response is therefore slightly softer than the fixed-base model.
+
+The maximum relative displacement increases from $38.8\ \mathrm{mm}$ to $43.7\ \mathrm{mm}$, which is an increase of about $12.5\%$. The acceleration amplification remains close to the fixed-base value, increasing only from $11.954$ to $12.095$. This indicates that, for the assumed foundation size and soil properties, SSI has a clearer effect on displacement and resonant frequency than on the peak acceleration amplification.
+
+The frequency-domain result should not be compared one-to-one with the RFEM RSA displacement from part (a), because part (a) is a multimodal response-spectrum result while part (b) is a single generalized SDOF frequency sweep. The useful comparison is qualitative: both calculations show that SSI changes the dynamic characteristics of the system. In the generalized SDOF model this appears as a lower resonant frequency and a larger modal displacement amplitude; in the RFEM RSA model it appears as a changed deformation pattern with lower displayed peak deformation values for the selected response-spectrum case.
+
+The main limitations are the two-level mass surrogate and the approximate SSI radiation coefficients. A more refined calculation would use the full RFEM nodal mass export and digitized chart values for $k_y(a_0)$, $C_y(a_0)$, and $C_{rx}(a_0)$.
+
