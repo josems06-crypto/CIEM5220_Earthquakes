@@ -496,32 +496,7 @@ The global drift ratio ($\theta$) is calculated as:$$\theta = \frac{\Delta_{max}
 The dynamic time history analysis proves that the structure has sufficient seismic capacity. The substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 4% of the S355 steel's yield threshold, while the overall frame stiffness restricts global deformations to a safe 0.23% drift ratio. Therefore, the building will comfortably survive the assigned bi-directional seismic event with no structural damage.
 
 
-A comparative review of the global structural demands reveals a substantial discrepancy between the results of the Response Spectrum Analysis (Q5) and the linear Time History Analysis (Q4). The global displacements and internal stresses derived from the RSA significantly exceed those obtained from the THAâ€”with the maximum RSA displacement in the Y-direction (34.2 mm) nearly tripling the corresponding THA displacement (11.5 mm). The remainder of this report is dedicated to justifying the reasoning behind the disrepancy between the results of RSA and THA.
 
--------------------------------------
-Discrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
------------------------------------------
-
-
-
-
-1. Spectral Shape: The Broadened Envelope vs. The Specific Ground Motion
-
-The primary driver of the conservative RSA results is the nature of the seismic input. The Eurocode design spectrum used in the RSA is an artificially broadened, smoothed envelope designed to account for a wide array of geological uncertainties. It features a sustained plateau of maximum spectral acceleration that spans a broad range of structural periods. Consequently, almost all significant modes of the structure are subjected to maximum or near-maximum inertial forces simultaneously.
-
-Conversely, the THA relies on a specific, raw acceleration record (Set 4). While Set 4 was methodically selected because its narrow, jagged spectral peaks coincided reasonably  with the structureâ€™s dominant natural periods ($T_x = 0.066$ s and $T_y = 0.21$ s), real earthquake records are highly irregular. The energy content of Set 4 drops off precipitously outside of these specific resonant spikes. The peak excites the dominant  fundamental periods intensely, but fails to deliver sustained energy across the broader frequency spectrum.
-
-2. Modal Mass Participation 
-
-The narrow bandwidth of the Set 4 ground motion exposes a critical limitation of the time history approach. The eigenvalue analysis demonstrated that the dominant fundamental modes (Mode 4 for the X-direction and Mode 1 for the Y-direction) only mobilize approximately 49.4% and 60.6% of the structure's effective modal mass respectively. The remaining 40% to 50% of the mass relies on the excitation of the other modes to contribute to the dynamic response. In the RSA procedure, 102 modes were explicitly combined to achieve the code-mandated >90% mass participation threshold. Because the Eurocode spectrum is broadly elevated, these higher-order modes were actively excited and contributed significantly to the cumulative base shear and global drift. In contrast, during the THA, the Set 4 ground motion lacked the necessary frequency content to excite these specific higher-order modes. As a result, nearly half of the structure's dynamic mass remained virtually unexcited during the time history simulation, leading to a drastically reduced global structural response.
-
-3. Peak Concurrency vs. Statistical Combination
-
-Finally, the mathematical combination of modal responses inherently renders the RSA more conservative. The RSA utilizes statistical combination rules (CQC used for Q5) which assume that the absolute peak responses of the individual modes occur simultaneously, yielding a theoretical upper-bound envelope of stresses. The THA calculates the response directly in the time domain, where the peak displacements of different modes occur at different fractions of a second. This lack of time-domain concurrency naturally prevents the structural deformations from stacking perfectly, further explaining the lower ultimate limit state (ULS) demands observed in the time history results.
-
-The RSA provides a highly conservative, code-compliant upper bound for the structural design by artificially ensuring that over 90% of the modal mass is subjected to peak spectral demands. While the THA utilizing Set 4 accurately captures the true time-domain behavior of the dominant structural modes, its jagged spectral profile fails to excite the higher-order modes, rendering it an unconservative metric if used in isolation for evaluating the global structural capacity.
-
-<div style="page-break-after: always;"></div>
 
 # Question 5
 
@@ -833,6 +808,33 @@ Seismic capacity is governed by lateral stiffness to prevent structural instabil
 The global drift ratio Global Design Drift Ratio is calculated as:$$Global Design Drift Ratio = \nu * \frac{\Delta_{max}}{H} = 0.5 * \frac{34.8 \text{ mm}}{5035 \text{ mm}} = 0.0035 \text{ rad} \approx \mathbf{0.35\%}$$A global drift ratio of 0.35% is well within standard acceptable limits for the ultimate limit state of steel frames under seismic loading (which typically allow drifts under 0.5% to ensure life safety and prevent collapse).
 
 The Response Spectra analysis proves that the structure has sufficient seismic capacity. The substantial cross-sectional area of the HEB 240 columns ensures that internal stresses remain at roughly 44.5% of the S355 steel's yield threshold, while the overall frame stiffness restricts global deformations to a safe 0.35% drift ratio. Therefore, the building will comfortably survive the assigned bi-directional seismic event with no structural damage.
+
+<div style="page-break-after: always;"></div>
+
+
+
+-------------------------------------
+Discrepancy between Response Spectrum analysis (Q5) and Time history analysis (Q4) results
+-----------------------------------------
+
+A comparative review of the global structural demands reveals a substantial discrepancy between the results of the Response Spectrum Analysis (Q5) and the linear Time History Analysis (Q4). The global displacements and internal stresses derived from the RSA significantly exceed those obtained from the THAâ€”with the maximum RSA displacement in the Y-direction (34.2 mm) nearly tripling the corresponding THA displacement (11.5 mm). The remainder of this report is dedicated to justifying the reasoning behind the disrepancy between the results of RSA and THA.
+
+
+1. Spectral Shape: The Broadened Envelope vs. The Specific Ground Motion
+
+The primary driver of the conservative RSA results is the nature of the seismic input. The Eurocode design spectrum used in the RSA is an artificially broadened, smoothed envelope designed to account for a wide array of geological uncertainties. It features a sustained plateau of maximum spectral acceleration that spans a broad range of structural periods. Consequently, almost all significant modes of the structure are subjected to maximum or near-maximum inertial forces simultaneously.
+
+Conversely, the THA relies on a specific, raw acceleration record (Set 4). While Set 4 was methodically selected because its narrow, jagged spectral peaks coincided reasonably  with the structureâ€™s dominant natural periods ($T_x = 0.066$ s and $T_y = 0.21$ s), real earthquake records are highly irregular. The energy content of Set 4 drops off precipitously outside of these specific resonant spikes. The peak excites the dominant  fundamental periods intensely, but fails to deliver sustained energy across the broader frequency spectrum.
+
+2. Modal Mass Participation 
+
+The narrow bandwidth of the Set 4 ground motion exposes a critical limitation of the time history approach. The eigenvalue analysis demonstrated that the dominant fundamental modes (Mode 4 for the X-direction and Mode 1 for the Y-direction) only mobilize approximately 49.4% and 60.6% of the structure's effective modal mass respectively. The remaining 40% to 50% of the mass relies on the excitation of the other modes to contribute to the dynamic response. In the RSA procedure, 102 modes were explicitly combined to achieve the code-mandated >90% mass participation threshold. Because the Eurocode spectrum is broadly elevated, these higher-order modes were actively excited and contributed significantly to the cumulative base shear and global drift. In contrast, during the THA, the Set 4 ground motion lacked the necessary frequency content to excite these specific higher-order modes. As a result, nearly half of the structure's dynamic mass remained virtually unexcited during the time history simulation, leading to a drastically reduced global structural response.
+
+3. Peak Concurrency vs. Statistical Combination
+
+Finally, the mathematical combination of modal responses inherently renders the RSA more conservative. The RSA utilizes statistical combination rules (CQC used for Q5) which assume that the absolute peak responses of the individual modes occur simultaneously, yielding a theoretical upper-bound envelope of stresses. The THA calculates the response directly in the time domain, where the peak displacements of different modes occur at different fractions of a second. This lack of time-domain concurrency naturally prevents the structural deformations from stacking perfectly, further explaining the lower ultimate limit state (ULS) demands observed in the time history results.
+
+The RSA provides a highly conservative, code-compliant upper bound for the structural design by artificially ensuring that over 90% of the modal mass is subjected to peak spectral demands. While the THA utilizing Set 4 accurately captures the true time-domain behavior of the dominant structural modes, its jagged spectral profile fails to excite the higher-order modes, rendering it an unconservative metric if used in isolation for evaluating the global structural capacity.
 
 <div style="page-break-after: always;"></div>
 
